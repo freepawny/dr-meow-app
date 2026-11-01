@@ -1,11 +1,12 @@
-function App() {
-  return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-sky-400">
-        Tailwind CSS Berhasil Terpasang! 🚀
-      </h1>
-    </div>
-  );
-}
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/landing/Landing"
 
-export default App
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Landing />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
