@@ -25,25 +25,6 @@ export interface FeaturesSectionProps {
 }
 
 /* ==========================================================================
-   ATOMIC SUB-COMPONENTS (LOCAL DECORATIVE BACKGROUND)
-   ========================================================================== */
-const BackgroundPattern: React.FC<{ className?: string }> = ({ className }) => (
-    <svg
-        className={cn("absolute pointer-events-none -z-10", className)}
-        viewBox="0 0 1441 1407"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        preserveAspectRatio="xMidYMid slice"
-    >
-        <path
-            d="M0 44H2.3924C24.2988 244.212 193.956 400 400 400H1041C1247.04 400 1416.7 244.212 1438.61 44H1441V1395C1441 1174.09 1261.91 995 1041 995H400C179.086 995 0 1174.09 0 1395V44Z"
-            fill="currentColor"
-        />
-    </svg>
-);
-
-/* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
 const DEFAULT_FEATURES: FeatureData[] = [
@@ -77,14 +58,10 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
         <section
             aria-label="Features Section"
             className={cn(
-                "relative w-full flex flex-col items-center justify-center min-h-[562px] py-16 md:py-[64px]",
+                "relative w-full flex flex-col items-center justify-center py-16 md:py-[64px]",
                 className
             )}
         >
-            {
-                //<BackgroundPattern className="text-surface-accent absolute left-1/2 -translate-x-1/2 -top-[422px] w-[100vw] h-auto z-0 pointer-events-none" />
-            }
-
             {/* Main Content Container */}
             <div className="relative z-10 w-full px-4 md:px-8 flex flex-col items-center justify-center gap-8 md:gap-12">
                 {/* Header Block */}
@@ -116,7 +93,7 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
                                     {feature.description}
                                 </span>
                             }
-                            className="md:w-1/3 lg:max-w-[350px] !bg-surface-white"
+                            className="md:w-1/3 lg:max-w-[350px] bg-surface-white"
                         />
                     ))}
                 </div>
@@ -128,4 +105,5 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
 /* ==========================================================================
    EXPORTS
    ========================================================================== */
+export { FeaturesSection as Features };
 export default FeaturesSection;

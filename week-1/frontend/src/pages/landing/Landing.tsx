@@ -2,36 +2,28 @@ import NavBar from "./_components/NavBar";
 import Hero from "./_components/Hero";
 import Features from "./_components/Features";
 import Pricing from "./_components/Pricing";
-import FourMethodServices from "./_components/FourMethodServices";
-import BeforAfter from "./_components/BeforAfter";
+import DeliveryMethods from "./_components/DeliveryMethods";
+import BeforeAfter from "./_components/BeforeAfter";
 import Branch from "./_components/Branch";
 import FAQ from "./_components/FAQ";
 
 export default function Landing() {
     return (
-        <div>
-            <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
-                <div className="w-full max-w-container mx-auto px-px-mobile md:px-0">
-                    <NavBar />
-                </div>
-            </header>
+        <div className="min-h-screen bg-surface-white">
+            <NavBar />
             <div className="w-full max-w-container mx-auto px-px-mobile md:px-0">
-                <main>
+                <main className="flex flex-col gap-12 md:gap-16 py-8">
                     <Hero />
-                    <br />
                     <Features />
-                    <br />
                     <Pricing />
-                    <br />
-                    <FourMethodServices />
-                    <br />
-                    <BeforAfter />
-                    <br />
+                    <DeliveryMethods />
+                    <BeforeAfter />
                     <Branch />
-                    <br />
                     <FAQ />
                 </main>
-                <footer></footer>
+                <footer className="py-8 text-center font-nunito text-sm text-grey-500 border-t border-grey-100 mt-8">
+                    <p>© {new Date().getFullYear()} DR. MEOWW. Hak cipta dilindungi undang-undang.</p>
+                </footer>
             </div>
         </div>
     );

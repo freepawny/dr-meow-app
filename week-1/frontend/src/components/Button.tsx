@@ -8,32 +8,68 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/** Supported size variants determining height, typography, and padding. */
 export type ButtonSize = "giant" | "large" | "medium" | "small" | "tiny";
+
+/** Visual style variants for surface elevation and border treatment. */
 export type ButtonStyle = "filled" | "outline" | "clear";
 
+/**
+ * Core configuration options for button appearance, layout, and iconography.
+ */
 export interface ButtonBaseProps {
-    /** Gaya visual tombol sesuai varian Figma */
+    /**
+     * Visual hierarchy style variant.
+     * @defaultValue "filled"
+     */
     variantStyle?: ButtonStyle;
-    /** Ukuran tombol */
+
+    /**
+     * Size scale applied to padding, height, and typography.
+     * @defaultValue "medium"
+     */
     size?: ButtonSize;
-    /** Menampilkan icon di sisi kiri */
+
+    /**
+     * Toggles the default left arrow icon when no custom leftIcon is supplied.
+     * @defaultValue false
+     */
     showLeftIcon?: boolean;
-    /** Menampilkan icon di sisi kanan */
+
+    /**
+     * Toggles the default right arrow icon when no custom rightIcon is supplied.
+     * @defaultValue false
+     */
     showRightIcon?: boolean;
-    /** Kustom node ikon kiri (fallback ke default arrow-left jika showLeftIcon=true) */
+
+    /** Custom icon node rendered before the button label. */
     leftIcon?: React.ReactNode;
-    /** Kustom node ikon kanan (fallback ke default arrow-right jika showRightIcon=true) */
+
+    /** Custom icon node rendered after the button label. */
     rightIcon?: React.ReactNode;
-    /** Mode icon tunggal tanpa label teks */
+
+    /**
+     * Renders the button as an equal-width icon container, suppressing labels.
+     * @defaultValue false
+     */
     iconOnly?: boolean;
-    /** Nonaktifkan interaksi tombol/link */
+
+    /**
+     * Disables interactive states and prevents click/navigation events.
+     * @defaultValue false
+     */
     disabled?: boolean;
-    /** URL tujuan jika tombol difungsikan sebagai anchor link */
-    href?: string;
+
+    /** Additional custom class names applied to the container. */
     className?: string;
+
+    /** Content or text label rendered inside the button. */
     children?: React.ReactNode;
 }
 
+/**
+ * Polymorphic button props discriminating between standard HTML button and anchor attributes.
+ */
 export type ButtonProps = ButtonBaseProps &
     (
         | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined })
@@ -48,10 +84,16 @@ interface IconProps {
     isTiny?: boolean;
 }
 
+/**
+ * Internal Lucide ArrowLeft wrapper with dynamic sizing based on button scale.
+ */
 const ArrowLeftIcon: React.FC<IconProps> = ({ className, isTiny }) => {
     return <ArrowLeft className={cn("flex-shrink-0", isTiny ? "w-4 h-4" : "w-6 h-6", className)} />;
 };
 
+/**
+ * Internal Lucide ArrowRight wrapper with dynamic sizing based on button scale.
+ */
 const ArrowRightIcon: React.FC<IconProps> = ({ className, isTiny }) => {
     return (
         <ArrowRight className={cn("flex-shrink-0", isTiny ? "w-4 h-4" : "w-6 h-6", className)} />
@@ -61,6 +103,10 @@ const ArrowRightIcon: React.FC<IconProps> = ({ className, isTiny }) => {
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/**
+ * Polymorphic interactive button component supporting multiple visual treatments,
+ * scales, icon placements, and dual semantic rendering (`<button>` vs `<a>`).
+ */
 export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
     (
         {

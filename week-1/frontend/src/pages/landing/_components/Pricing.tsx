@@ -1,17 +1,25 @@
 /* ==========================================================================
    IMPORTS & UTILITIES
    ========================================================================== */
-import { useState } from "react";
+import React, { useState } from "react";
+import { cn } from "@/lib/utils";
 import { TabContainer, TabPill } from "@/components/TabPill";
 import PricingCard from "@/components/PricingCard";
-import SizeCard from "@/pages/landing/_components/SizeCard";
+import SizeCard from "@/components/SizeCard";
+
+/* ==========================================================================
+   TYPES & INTERFACES
+   ========================================================================== */
+export interface PricingProps {
+    className?: string;
+}
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
-export default function Pricing() {
+export const Pricing: React.FC<PricingProps> = ({ className }) => {
     const [activeTab, setActiveTab] = useState<"grooming" | "penitipan">("grooming");
-    const [selectedSizeGrooming, setSelectedSizeGrooming] = useState<"<2" | ">2" | ">5">(">5");
+    const [selectedSizeGrooming, setSelectedSizeGrooming] = useState<"<2" | ">2" | ">5">("<2");
 
     const groomingPricing = {
         hairSkin: { "<2": "Rp 55.000", ">2": "Rp 60.000", ">5": "Rp 65.000" },
@@ -144,7 +152,13 @@ export default function Pricing() {
     ];
 
     return (
-        <section className="flex w-full max-w-container mx-auto flex-col items-center gap-8 py-8 px-4 md:px-8">
+        <section
+            aria-label="Pricing Section"
+            className={cn(
+                "flex w-full flex-col items-center gap-8 py-8 px-4 md:px-8",
+                className
+            )}
+        >
             {/* Header */}
             <div className="flex flex-col items-center justify-center gap-4 text-center">
                 <h2 className="font-nunito text-h2 font-black text-primary-700">
@@ -231,4 +245,9 @@ export default function Pricing() {
             </div>
         </section>
     );
-}
+};
+
+/* ==========================================================================
+   EXPORTS
+   ========================================================================== */
+export default Pricing;

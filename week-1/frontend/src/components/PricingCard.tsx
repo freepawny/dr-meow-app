@@ -15,7 +15,7 @@ export interface PricingFeature {
     text: string;
 }
 
-export type PricingCardVariant = "default" | "popular" | string;
+export type PricingCardVariant = "default" | "popular" | (string & {});
 
 export interface PricingCardProps extends React.HTMLAttributes<HTMLDivElement> {
     variant?: PricingCardVariant;
@@ -52,7 +52,6 @@ export const PricingCard: React.FC<PricingCardProps> = ({
     return (
         <div
             className={cn(
-                // Base styles
                 "relative flex w-full flex-col items-center rounded-[12px] bg-white shadow-500 transition-all duration-300",
                 "md:max-w-[415px]",
                 "hover:scale-[1.02] hover:shadow-600 hover:z-10",
@@ -62,7 +61,6 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             )}
             {...props}
         >
-            {/* BADGE for POPULAR variant */}
             {isPopular && (
                 <div className="absolute left-1/2 -top-4 -translate-x-1/2">
                     <Badge
@@ -107,7 +105,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
 
                 {/* Divider */}
                 <div className="flex w-full justify-center py-1">
-                    <div className="h-px w-full max-w-[256px] bg-[#D9D9D9]" />
+                    <div className="h-px w-full max-w-[256px] bg-grey-200" />
                 </div>
 
                 {/* Features List */}

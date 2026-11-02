@@ -65,13 +65,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     return (
         <header
             className={cn(
-                "w-full bg-surface-white/95 backdrop-blur-sm sticky top-0 z-50 px-4 py-3",
+                "w-full bg-surface-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-grey-100",
                 className
             )}
         >
             <nav
                 aria-label="Main Navigation"
-                className="flex w-full items-center justify-between relative"
+                className="flex w-full max-w-container mx-auto items-center justify-between relative px-px-mobile py-3 md:px-0"
             >
                 <a href="/" className="flex-shrink-0 transition-opacity hover:opacity-90">
                     <img
@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     />
                 </a>
 
-                <div role="tablist" className="hidden md:flex items-center gap-1">
+                <div className="hidden md:flex items-center gap-1">
                     <TabContainer variant="default" aria-label="Navigasi Capsule">
                         {items.map((item) => (
                             <TabPill
@@ -130,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </nav>
 
             {isMobileMenuOpen && (
-                <div className="md:hidden mt-3 pt-3 border-t border-grey-100 flex flex-col gap-2 w-full animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="md:hidden max-w-container mx-auto px-px-mobile pb-3 mt-3 pt-3 border-t border-grey-100 flex flex-col gap-2 w-full animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="flex flex-col gap-1" role="tablist">
                         {items.map((item) => (
                             <TabPill
@@ -163,4 +163,5 @@ export const Navbar: React.FC<NavbarProps> = ({
 /* ==========================================================================
    EXPORTS
    ========================================================================== */
+export { Navbar as NavBar };
 export default Navbar;

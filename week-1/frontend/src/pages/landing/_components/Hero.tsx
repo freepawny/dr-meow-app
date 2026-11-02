@@ -10,26 +10,15 @@ import { MessageCircle } from "lucide-react";
    TYPES & INTERFACES
    ========================================================================== */
 export interface HeroSectionProps {
-    /** Judul baris pertama dan kedua */
     titlePrefix?: string;
-    /** Teks sorotan dengan warna aksen kuning/oranye */
     titleHighlight?: string;
-    /** Deskripsi penjelasan hero */
     description?: string;
-    /** Teks tombol CTA utama */
     bookingText?: string;
-    /** URL / Handler tombol Booking */
     bookingHref?: string;
     onBookingClick?: () => void;
-    /** Teks tombol CTA WhatsApp */
     whatsappText?: string;
-    /** URL / Handler tombol WhatsApp */
     whatsappHref?: string;
     onWhatsappClick?: () => void;
-    /** URL gambar jejak kaki kucing dekoratif kiri */
-    leftPawSrc?: string;
-    /** URL gambar jejak kaki kucing dekoratif kanan */
-    rightPawSrc?: string;
     className?: string;
 }
 
@@ -52,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <section
             aria-label="Hero Section"
             className={cn(
-                "relative w-full min-h-[640px] md:min-h-[754px] flex items-center justify-center overflow-hidden bg-surface-white px-4 py-16 md:py-28",
+                "relative w-full flex items-center justify-center overflow-hidden bg-surface-white px-4 py-16 md:py-28",
                 className
             )}
         >
@@ -105,4 +94,5 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 /* ==========================================================================
    EXPORTS
    ========================================================================== */
+export { HeroSection as Hero };
 export default HeroSection;
