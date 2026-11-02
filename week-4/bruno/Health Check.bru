@@ -1,0 +1,11 @@
+meta{
+    name: Health Check
+    type: http
+    seq: 1
+}
+
+gte{
+    url: http://127.0.0.1:8004/api/health.php
+    body:none
+    auth: none
+}
