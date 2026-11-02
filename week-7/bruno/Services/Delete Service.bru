@@ -1,0 +1,14 @@
+meta {
+  name: Delete Service
+  type: http
+  seq: 5
+}
+delete {
+  url: {{baseUrl}}/api/v1/services/5
+  body: none
+  auth: none
+}
+assert {
+  res.status: 200
+  res.body.success: true
+}
