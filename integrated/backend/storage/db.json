@@ -3,8 +3,8 @@
         {
             "id": 1,
             "name": "Basic Grooming",
-            "description": "Mandi, pengeringan, dan penyisiran bulu.",
-            "price": 50000,
+            "description": "Mandi dan perawatan bulu ekstra wangi.",
+            "price": 55000,
             "duration_minutes": 60,
             "category": "basic",
             "is_active": true
