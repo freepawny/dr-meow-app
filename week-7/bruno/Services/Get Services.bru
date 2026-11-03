@@ -1,0 +1,14 @@
+meta {
+  name: Get Services
+  type: http
+  seq: 1
+}
+get {
+  url: {{baseUrl}}/api/v1/services
+  body: none
+  auth: none
+}
+assert {
+  res.status: 200
+  res.body.success: true
+}

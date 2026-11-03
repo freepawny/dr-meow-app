@@ -1,0 +1,40 @@
+{
+    "services": [
+        {
+            "id": 1,
+            "name": "Basic Grooming",
+            "description": "Mandi, pengeringan, dan penyisiran bulu.",
+            "price": 50000,
+            "duration_minutes": 60,
+            "category": "basic",
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "name": "Full Grooming",
+            "description": "Mandi, pengeringan, potong kuku, dan pembersihan telinga.",
+            "price": 85000,
+            "duration_minutes": 90,
+            "category": "full",
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "name": "Kitten Grooming",
+            "description": "Perawatan khusus untuk anak kucing.",
+            "price": 45000,
+            "duration_minutes": 45,
+            "category": "kitten",
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "name": "Premium Grooming",
+            "description": "Perawatan lengkap dengan perhatian ekstra.",
+            "price": 120000,
+            "duration_minutes": 120,
+            "category": "premium",
+            "is_active": false
+        }
+    ]
+}

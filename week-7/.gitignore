@@ -1,0 +1,3 @@
+/storage/*.lock
+/.env
+/vendor/
