@@ -109,7 +109,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
                 </div>
             )}
 
-            <div className="flex w-full flex-col gap-6 p-6">
+            <div className="flex h-full w-full flex-col justify-between gap-6 p-6">
                 {/* Header Section */}
                 <div className="flex w-full flex-col gap-6">
                     <div className="flex w-full items-center justify-between">
