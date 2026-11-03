@@ -1,11 +1,11 @@
 import NavBar from "./_components/NavBar";
-import Hero from "./_components/Hero";
-import Features from "./_components/Features";
-import Pricing from "./_components/Pricing";
-import DeliveryMethods from "./_components/DeliveryMethods";
-import BeforeAfter from "./_components/BeforeAfter";
-import Branch from "./_components/Branch";
-import FAQ from "./_components/FAQ";
+import Hero from "./_sections/Hero";
+import Features from "./_sections/Features";
+import Pricing from "./_sections/Pricing";
+import DeliveryMethods from "./_sections/DeliveryMethods";
+import BeforeAfter from "./_sections/BeforeAfter";
+import Branch from "./_sections/Branch";
+import FAQ from "./_sections/FAQ";
 
 export default function Landing() {
     return (

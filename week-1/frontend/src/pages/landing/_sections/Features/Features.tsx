@@ -4,20 +4,18 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import CardVertical from "@/components/CardVertical";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../../_components/SectionHeader";
+import {
+    type FeatureData,
+    DEFAULT_FEATURES,
+    DEFAULT_HEADLINE,
+    DEFAULT_SUBHEADLINE
+} from "./constants";
 
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
-/** Feature entry detailing a key service differentiator. */
-export interface FeatureData {
-    /** Unique identifier for the feature. */
-    id: string | number;
-    /** Title of the feature differentiator. */
-    title: string;
-    /** Detailed explanation of the feature. */
-    description: string;
-}
+export type { FeatureData };
 
 /**
  * Props for the FeaturesSection component.
@@ -25,12 +23,12 @@ export interface FeatureData {
 export interface FeaturesSectionProps {
     /**
      * Primary section headline text.
-     * @defaultValue "Kenapa DR. MEOWW Berbeda?"
+     * @defaultValue DEFAULT_HEADLINE
      */
     headline?: string;
     /**
      * Secondary sub-headline descriptive text.
-     * @defaultValue "Kami tidak sembarangan memandikan kucing. Kami menerapkan protokol kesehatan berlapis untuk memastikan anabul pulang dalam keadaan cantik, sehat, dan bebas stres."
+     * @defaultValue DEFAULT_SUBHEADLINE
      */
     subHeadline?: string;
     /**
@@ -45,34 +43,12 @@ export interface FeaturesSectionProps {
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
-/** Default list of standout service features and safety guarantees. */
-const DEFAULT_FEATURES: FeatureData[] = [
-    {
-        id: 1,
-        title: "Skrining Suhu &\nFisik Wajib",
-        description:
-            "Setiap kucing wajib lolos cek suhu vital (37,8°C – 39,2°C). Jika terindikasi sakit, perawatan ditunda demi mencegah penularan silang. Lingkungan steril dan aman."
-    },
-    {
-        id: 2,
-        title: "Ditangani Paramedis Veteriner",
-        description:
-            "Bukan sekadar groomer biasa. Tim kami paham anatomi, sabar menghadapi kucing penakut, dan punya teknik khusus untuk kucing yang agresif."
-    },
-    {
-        id: 3,
-        title: "Laporan Kesehatan Digital",
-        description:
-            "Setelah pengerjaan selesai, Anda akan menerima laporan rekam medis digital (suhu, temuan fisik/jamur) beserta bukti foto Before-After langsung ke WhatsApp Anda."
-    }
-];
-
 /**
  * Landing page section highlighting clinical standards and unique service advantages.
  */
 export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
-    headline = "Kenapa DR. MEOWW Berbeda?",
-    subHeadline = "Kami tidak sembarangan memandikan kucing. Kami menerapkan protokol kesehatan berlapis untuk memastikan anabul pulang dalam keadaan cantik, sehat, dan bebas stres.",
+    headline = DEFAULT_HEADLINE,
+    subHeadline = DEFAULT_SUBHEADLINE,
     features = DEFAULT_FEATURES,
     className
 }) => {
@@ -90,8 +66,6 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
                 <SectionHeader
                     headline={headline}
                     subHeadline={subHeadline}
-                    className="gap-6 max-w-[810px] mx-auto"
-                    headlineClassName="md:leading-[40px]"
                 />
 
                 {/* Cards Grid */}

@@ -10,55 +10,23 @@ import { cn } from "@/lib/utils";
 /** Alignment options for the section header text and container. */
 export type SectionHeaderAlign = "left" | "center" | "right";
 
-/** Heading level HTML element tag. */
-export type SectionHeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
 /**
  * Props for the SectionHeader component.
  */
-export interface SectionHeaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+export interface SectionHeaderProps {
     /**
-     * Primary section headline text or node.
+     * Primary section headline text or React element.
      */
     headline?: React.ReactNode;
     /**
-     * Alias for headline.
-     */
-    title?: React.ReactNode;
-    /**
-     * Supporting sub-headline descriptive copy text or node.
+     * Supporting sub-headline descriptive copy text or React element.
      */
     subHeadline?: React.ReactNode;
-    /**
-     * Alias for subHeadline.
-     */
-    subtitle?: React.ReactNode;
-    /**
-     * Alias for subHeadline.
-     */
-    description?: React.ReactNode;
     /**
      * Text alignment layout.
      * @defaultValue "center"
      */
     align?: SectionHeaderAlign;
-    /**
-     * Semantic HTML heading element.
-     * @defaultValue "h2"
-     */
-    as?: SectionHeadingTag;
-    /**
-     * Additional CSS class name for the wrapper container.
-     */
-    className?: string;
-    /**
-     * Additional CSS class name for the headline element.
-     */
-    headlineClassName?: string;
-    /**
-     * Additional CSS class name for the sub-headline element.
-     */
-    subHeadlineClassName?: string;
 }
 
 /* ==========================================================================
@@ -69,54 +37,36 @@ export interface SectionHeaderProps extends Omit<React.HTMLAttributes<HTMLDivEle
  */
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
     headline,
-    title,
     subHeadline,
-    subtitle,
-    description,
-    align = "center",
-    as: Tag = "h2",
-    className,
-    headlineClassName,
-    subHeadlineClassName,
-    ...props
+    align = "center"
 }) => {
-    const finalHeadline = headline ?? title;
-    const finalSubHeadline = subHeadline ?? subtitle ?? description;
-
     const alignContainerClasses: Record<SectionHeaderAlign, string> = {
-        left: "items-start text-left",
-        center: "items-center text-center",
-        right: "items-end text-right"
+        left: "items-start text-left flex-1 w-full lg:max-w-[490px]",
+        center: "items-center text-center justify-center",
+        right: "items-end text-right justify-center"
+    };
+
+    const alignTextClasses: Record<SectionHeaderAlign, string> = {
+        left: "w-full",
+        center: "max-w-[618px]",
+        right: "max-w-[618px]"
     };
 
     return (
-        <div
-            className={cn(
-                "flex flex-col gap-4",
-                alignContainerClasses[align],
-                className
+        <div className={cn("flex flex-col gap-4", alignContainerClasses[align])}>
+            {headline && (
+                <h2 className="font-nunito font-black text-3xl md:text-h1 text-primary-700 leading-tight whitespace-pre-line">
+                    {headline}
+                </h2>
             )}
-            {...props}
-        >
-            {finalHeadline && (
-                <Tag
-                    className={cn(
-                        "font-nunito font-black text-3xl md:text-h2 text-primary-700 leading-tight whitespace-pre-line",
-                        headlineClassName
-                    )}
-                >
-                    {finalHeadline}
-                </Tag>
-            )}
-            {finalSubHeadline && (
+            {subHeadline && (
                 <p
                     className={cn(
                         "font-nunito font-normal text-b1 text-primary-700 leading-6",
-                        align === "center" && "max-w-[618px]",
-                        subHeadlineClassName
+                        alignTextClasses[align]
                     )}
                 >
-                    {finalSubHeadline}
+                    {subHeadline}
                 </p>
             )}
         </div>

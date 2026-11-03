@@ -7,37 +7,19 @@ import { cn } from "@/lib/utils";
 import Button from "@/components/Button";
 import Badge from "@/components/Badge";
 import CardVertical from "@/components/CardVertical";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../../_components/SectionHeader";
+import {
+    type BranchItem,
+    DEFAULT_BRANCHES,
+    DEFAULT_HEADLINE,
+    DEFAULT_SUBHEADLINE,
+    DEFAULT_LOGO_SRC
+} from "./constants";
 
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
-/** Clinical branch location descriptor and metadata. */
-export interface BranchItem {
-    /** Unique identifier for the branch. */
-    id: string | number;
-    /** Region or geographical area badge label. */
-    tag: string;
-    /** Daily operational schedule text. */
-    operatingHours: string;
-    /** Brand prefix for the branch heading. */
-    titlePrefix: string;
-    /** Highlighted branch name text. */
-    titleHighlight: string;
-    /** Street and building address line. */
-    addressRoad: string;
-    /** District and city address line. */
-    addressDistrict: string;
-    /** List of available branch amenities and medical services. */
-    facilities: string[];
-    /** Google Maps or external navigation link URL. */
-    mapUrl: string;
-    /**
-     * Label text for the map navigation action button.
-     * @defaultValue "Buka di Google Maps"
-     */
-    mapButtonText?: string;
-}
+export type { BranchItem };
 
 /**
  * Props for the Branch section component.
@@ -45,17 +27,17 @@ export interface BranchItem {
 export interface BranchProps {
     /**
      * Primary section headline text.
-     * @defaultValue "Kunjungi Cabang DR. MEOWW Terdekat"
+     * @defaultValue DEFAULT_HEADLINE
      */
     headline?: string;
     /**
      * Supporting operational sub-headline descriptive copy.
-     * @defaultValue "Buka setiap hari (kecuali hari Jumat) pukul 08.00 – 17.00 WIB."
+     * @defaultValue DEFAULT_SUBHEADLINE
      */
     subHeadline?: string;
     /**
      * Brand logo image source URL.
-     * @defaultValue "https://api.builder.io/api/v1/image/assets/TEMP/32566a6f6b486523f5a80de70ce749e97c0e95af?width=516"
+     * @defaultValue DEFAULT_LOGO_SRC
      */
     logoSrc?: string;
     /**
@@ -68,55 +50,15 @@ export interface BranchProps {
 }
 
 /* ==========================================================================
-   ATOMIC SUB-COMPONENTS
-   ========================================================================== */
-
-/* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
-/** Default fallback list of operating physical clinic and salon branches. */
-const DEFAULT_BRANCHES: BranchItem[] = [
-    {
-        id: "sukun",
-        tag: "Cabang Malang Selatan / Barat",
-        operatingHours: "08.00 – 17.00 WIB",
-        titlePrefix: "DR. MEOWW —",
-        titleHighlight: "Cabang Sukun",
-        addressRoad: "Perumahan La Vella 29",
-        addressDistrict: "Kec. Sukun, Kota Malang",
-        facilities: [
-            "Ruang tunggu Indoor/Outdoor nyaman",
-            "Instalasi Grooming Medis",
-            "Kandang Penitipan Steril."
-        ],
-        mapUrl: "https://maps.google.com/?q=DR.+MEOWW+Cabang+Sukun",
-        mapButtonText: "Buka di Google Maps"
-    },
-    {
-        id: "pakis",
-        tag: "Cabang Malang Timur",
-        operatingHours: "08.00 – 17.00 WIB",
-        titlePrefix: "DR. MEOWW —",
-        titleHighlight: "Cabang Pakis",
-        addressRoad: "Perumahan Kota Mandala A10",
-        addressDistrict: "Pakis, Malang",
-        facilities: [
-            "Ruang tunggu Indoor/Outdoor nyaman",
-            "Layanan Antar-Jemput Kurir",
-            "Grooming Medis Lengkap."
-        ],
-        mapUrl: "https://maps.google.com/?q=DR.+MEOWW+Cabang+Pakis",
-        mapButtonText: "Buka di Google Maps"
-    }
-];
-
 /**
  * Landing page section displaying physical clinic and salon branch locations with operational details.
  */
 export const Branch: FC<BranchProps> = ({
-    headline = "Kunjungi Cabang DR. MEOWW Terdekat",
-    subHeadline = "Buka setiap hari (kecuali hari Jumat) pukul 08.00 – 17.00 WIB.",
-    logoSrc = "https://api.builder.io/api/v1/image/assets/TEMP/32566a6f6b486523f5a80de70ce749e97c0e95af?width=516",
+    headline = DEFAULT_HEADLINE,
+    subHeadline = DEFAULT_SUBHEADLINE,
+    logoSrc = DEFAULT_LOGO_SRC,
     branches = DEFAULT_BRANCHES,
     className
 }) => {

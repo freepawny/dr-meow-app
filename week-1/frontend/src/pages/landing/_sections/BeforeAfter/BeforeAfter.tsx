@@ -7,24 +7,18 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/Button";
 import CardVertical from "@/components/CardVertical";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../../_components/SectionHeader";
+import {
+    type BeforeAfterItem,
+    DEFAULT_ITEMS,
+    DEFAULT_HEADLINE,
+    DEFAULT_SUBHEADLINE
+} from "./constants";
 
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
-/** Data model representing a before-and-after grooming transformation pair. */
-export interface BeforeAfterItem {
-    /** Unique identifier for the transformation entry. */
-    id: string | number;
-    /** Image source URL illustrating the pet's condition before treatment. */
-    beforeImage: string;
-    /** Accessible alternative text for the before image. */
-    beforeAlt?: string;
-    /** Image source URL illustrating the pet's condition after treatment. */
-    afterImage: string;
-    /** Accessible alternative text for the after image. */
-    afterAlt?: string;
-}
+export type { BeforeAfterItem };
 
 /**
  * Props for the BeforeAfter section component.
@@ -32,12 +26,12 @@ export interface BeforeAfterItem {
 export interface BeforeAfterProps {
     /**
      * Primary section headline text.
-     * @defaultValue "Lihat Bagaimana Perubahan Kucing-Kucing Ini"
+     * @defaultValue DEFAULT_HEADLINE
      */
     headline?: string;
     /**
      * Supporting sub-headline descriptive copy.
-     * @defaultValue "Jangan hanya percaya kata-kata kami. Lihat transformasi dan cerita bahagia dari para Paw Parents di Malang."
+     * @defaultValue DEFAULT_SUBHEADLINE
      */
     subHeadline?: string;
     /**
@@ -50,36 +44,14 @@ export interface BeforeAfterProps {
 }
 
 /* ==========================================================================
-   ATOMIC SUB-COMPONENTS
-   ========================================================================== */
-
-/* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
-/** Default list of before-and-after grooming transformation showcases. */
-const DEFAULT_ITEMS: BeforeAfterItem[] = [
-    {
-        id: 1,
-        beforeImage: "https://api.builder.io/api/v1/image/assets/TEMP/c6fcd5953097f1c1ef2cf47075ad67c4ef2bc472?width=658",
-        beforeAlt: "Transformasi kucing sebelum grooming",
-        afterImage: "https://api.builder.io/api/v1/image/assets/TEMP/023ba9531a56b6ce60863a880f0dee8b632f3390?width=658",
-        afterAlt: "Transformasi kucing setelah grooming"
-    },
-    {
-        id: 2,
-        beforeImage: "https://api.builder.io/api/v1/image/assets/TEMP/023ba9531a56b6ce60863a880f0dee8b632f3390?width=658",
-        beforeAlt: "Transformasi kucing sebelum perawatan intensif",
-        afterImage: "https://api.builder.io/api/v1/image/assets/TEMP/c6fcd5953097f1c1ef2cf47075ad67c4ef2bc472?width=658",
-        afterAlt: "Transformasi kucing setelah perawatan intensif"
-    }
-];
-
 /**
  * Interactive before-and-after showcase section featuring stacked comparison cards and carousel navigation.
  */
 export const BeforeAfter: FC<BeforeAfterProps> = ({
-    headline = "Lihat Bagaimana Perubahan Kucing-Kucing Ini",
-    subHeadline = "Jangan hanya percaya kata-kata kami. Lihat transformasi dan cerita bahagia dari para Paw Parents di Malang.",
+    headline = DEFAULT_HEADLINE,
+    subHeadline = DEFAULT_SUBHEADLINE,
     items = DEFAULT_ITEMS,
     className
 }) => {
@@ -108,9 +80,6 @@ export const BeforeAfter: FC<BeforeAfterProps> = ({
                 align="left"
                 headline={headline}
                 subHeadline={subHeadline}
-                className="justify-center flex-1 w-full lg:max-w-[490px]"
-                headlineClassName="w-full md:leading-10"
-                subHeadlineClassName="w-full"
             />
 
             <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-8 flex-shrink-0">

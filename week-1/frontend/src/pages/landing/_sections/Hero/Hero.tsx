@@ -5,7 +5,16 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/Button";
 import { MessageCircle } from "lucide-react";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../../_components/SectionHeader";
+import {
+    DEFAULT_TITLE_PREFIX,
+    DEFAULT_TITLE_HIGHLIGHT,
+    DEFAULT_DESCRIPTION,
+    DEFAULT_BOOKING_TEXT,
+    DEFAULT_BOOKING_HREF,
+    DEFAULT_WHATSAPP_TEXT,
+    DEFAULT_WHATSAPP_HREF
+} from "./constants";
 
 /* ==========================================================================
    TYPES & INTERFACES
@@ -16,39 +25,39 @@ import SectionHeader from "./SectionHeader";
 export interface HeroSectionProps {
     /**
      * Leading prefix text for the primary headline.
-     * @defaultValue "Gak Sekadar Bersih!\nGrooming Kucing Standar "
+     * @defaultValue DEFAULT_TITLE_PREFIX
      */
     titlePrefix?: string;
     /**
      * Highlighted accent text in the primary headline.
-     * @defaultValue "Medis Veteriner"
+     * @defaultValue DEFAULT_TITLE_HIGHLIGHT
      */
     titleHighlight?: string;
     /**
      * Supporting paragraph describing clinical grooming benefits.
-     * @defaultValue "Rawat kucing kesayangan lebih praktis dan higienis dengan formula hypoallergenic bebas SLS/SLES yang aman untuk kulit sensitif. Tersedia layanan jemput ke rumah atau kunjungi langsung cabang Sukun dan Pakis!"
+     * @defaultValue DEFAULT_DESCRIPTION
      */
     description?: string;
     /**
      * Label text for the primary booking CTA button.
-     * @defaultValue "BOOKING"
+     * @defaultValue DEFAULT_BOOKING_TEXT
      */
     bookingText?: string;
     /**
      * Target anchor href for booking navigation.
-     * @defaultValue "#booking"
+     * @defaultValue DEFAULT_BOOKING_HREF
      */
     bookingHref?: string;
     /** Callback triggered when the booking button is clicked. */
     onBookingClick?: () => void;
     /**
      * Label text for the secondary WhatsApp CTA button.
-     * @defaultValue "Konsultasi via Whatsapp"
+     * @defaultValue DEFAULT_WHATSAPP_TEXT
      */
     whatsappText?: string;
     /**
      * Target WhatsApp link or telephone URL.
-     * @defaultValue "https://wa.me/"
+     * @defaultValue DEFAULT_WHATSAPP_HREF
      */
     whatsappHref?: string;
     /** Callback triggered when the WhatsApp button is clicked. */
@@ -64,14 +73,14 @@ export interface HeroSectionProps {
  * Hero header banner component for the landing page with value propositions and primary CTAs.
  */
 export const HeroSection: React.FC<HeroSectionProps> = ({
-    titlePrefix = "Gak Sekadar Bersih!\nGrooming Kucing Standar ",
-    titleHighlight = "Medis Veteriner",
-    description = "Rawat kucing kesayangan lebih praktis dan higienis dengan formula hypoallergenic bebas SLS/SLES yang aman untuk kulit sensitif. Tersedia layanan jemput ke rumah atau kunjungi langsung cabang Sukun dan Pakis!",
-    bookingText = "BOOKING",
-    bookingHref = "#booking",
+    titlePrefix = DEFAULT_TITLE_PREFIX,
+    titleHighlight = DEFAULT_TITLE_HIGHLIGHT,
+    description = DEFAULT_DESCRIPTION,
+    bookingText = DEFAULT_BOOKING_TEXT,
+    bookingHref = DEFAULT_BOOKING_HREF,
     onBookingClick,
-    whatsappText = "Konsultasi via Whatsapp",
-    whatsappHref = "https://wa.me/",
+    whatsappText = DEFAULT_WHATSAPP_TEXT,
+    whatsappHref = DEFAULT_WHATSAPP_HREF,
     onWhatsappClick,
     className
 }) => {
@@ -83,13 +92,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className
             )}
         >
-
             {/* Main Content Container */}
             <div className="relative z-10 w-full flex flex-col items-center justify-center text-center">
                 <div className="flex flex-col items-center justify-center max-w-[626px] gap-6">
                     {/* Main Headline & Subtitle */}
                     <SectionHeader
-                        as="h1"
                         headline={
                             <>
                                 {titlePrefix}
@@ -97,8 +104,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                             </>
                         }
                         subHeadline={description}
-                        headlineClassName="sm:text-4xl md:text-h1 md:leading-[58px] tracking-tight"
-                        subHeadlineClassName="text-sm sm:text-base leading-6 text-secondary-dark max-w-[566px]"
                     />
 
                     {/* Action Buttons */}

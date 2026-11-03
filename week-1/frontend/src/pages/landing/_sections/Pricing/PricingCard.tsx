@@ -3,7 +3,7 @@
    ========================================================================== */
 import React from "react";
 import { cn } from "@/lib/utils";
-import Button from "./Button";
+import Button from "@/components/Button";
 import Badge from "@/components/Badge";
 import { Check } from "lucide-react";
 

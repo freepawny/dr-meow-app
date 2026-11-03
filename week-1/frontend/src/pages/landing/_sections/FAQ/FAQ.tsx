@@ -3,7 +3,12 @@
    ========================================================================== */
 import React from "react";
 import { cn } from "@/lib/utils";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "../../_components/SectionHeader";
+import {
+    DEFAULT_HEADLINE,
+    DEFAULT_SUBHEADLINE,
+    DEFAULT_PLACEHOLDER_TEXT
+} from "./constants";
 
 /* ==========================================================================
    TYPES & INTERFACES
@@ -14,12 +19,12 @@ import SectionHeader from "./SectionHeader";
 export interface FAQProps {
     /**
      * Primary section headline text.
-     * @defaultValue "Pertanyaan yang Sering Diajukan (FAQ)"
+     * @defaultValue DEFAULT_HEADLINE
      */
     headline?: string;
     /**
      * Supporting sub-headline descriptive copy.
-     * @defaultValue "Punya pertanyaan seputar layanan dan fasilitas kami? Temukan jawabannya di sini."
+     * @defaultValue DEFAULT_SUBHEADLINE
      */
     subHeadline?: string;
     /** Additional custom CSS class names. */
@@ -33,8 +38,8 @@ export interface FAQProps {
  * Landing page section providing answers to frequently asked customer questions.
  */
 export const FAQ: React.FC<FAQProps> = ({
-    headline = "Pertanyaan yang Sering Diajukan (FAQ)",
-    subHeadline = "Punya pertanyaan seputar layanan dan fasilitas kami? Temukan jawabannya di sini.",
+    headline = DEFAULT_HEADLINE,
+    subHeadline = DEFAULT_SUBHEADLINE,
     className
 }) => {
     return (
@@ -48,11 +53,10 @@ export const FAQ: React.FC<FAQProps> = ({
             <SectionHeader
                 headline={headline}
                 subHeadline={subHeadline}
-                subHeadlineClassName="leading-normal"
             />
             <div className="flex w-full items-center justify-center rounded-xl bg-surface-white p-8 shadow-200">
                 <span className="font-nunito text-b1 text-grey-500">
-                    Daftar Pertanyaan & Jawaban Segera Hadir
+                    {DEFAULT_PLACEHOLDER_TEXT}
                 </span>
             </div>
         </section>
