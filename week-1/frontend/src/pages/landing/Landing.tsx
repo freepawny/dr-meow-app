@@ -22,8 +22,13 @@ export default function Landing() {
                     <FAQ />
                 </main>
                 <footer className="py-8 text-center font-nunito text-sm text-grey-500 border-t border-grey-100 mt-8">
-                    <p>© {new Date().getFullYear()} DR. MEOWW. Hak cipta dilindungi undang-undang.</p>
+                    <p>
+                        © {new Date().getFullYear()} DR. MEOWW. Hak cipta dilindungi undang-undang.
+                    </p>
                 </footer>
+                <footer></footer>
+                <footer></footer>
+                <footer></footer>
             </div>
         </div>
     );

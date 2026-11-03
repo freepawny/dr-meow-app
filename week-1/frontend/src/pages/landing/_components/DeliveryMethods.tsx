@@ -3,27 +3,50 @@
    ========================================================================== */
 import { cn } from "@/lib/utils";
 import CardVertical from "@/components/CardVertical";
+import SectionHeader from "./SectionHeader";
 
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/** Descriptor for an individual service delivery method option. */
 export interface DeliveryMethodItem {
+    /** Unique identifier for the delivery method. */
     id: string | number;
+    /** Image URL illustrating the fulfillment method. */
     imageSrc?: string;
+    /** Title of the fulfillment method. */
     title: string;
+    /** Short description of the service flow. */
     description: string;
 }
 
+/**
+ * Props for the DeliveryMethods section component.
+ */
 export interface DeliveryMethodsProps {
+    /**
+     * Primary section headline text.
+     * @defaultValue "Empat Cara Untuk\nMembuat Kucing Menawan"
+     */
     headline?: string;
+    /**
+     * Supporting sub-headline descriptive copy.
+     * @defaultValue "Reservasi slot Kamu dalam hitungan menit. Pilih 1 dari 4 cara pemenuhan layanan yang paling pas dengan jadwal sibuk Anda."
+     */
     subHeadline?: string;
+    /**
+     * List of delivery method entries to display.
+     * @defaultValue DEFAULT_METHODS
+     */
     methods?: DeliveryMethodItem[];
+    /** Additional custom CSS class names. */
     className?: string;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/** Default fallback list of delivery methods. */
 const DEFAULT_METHODS: DeliveryMethodItem[] = [
     {
         id: 1,
@@ -55,6 +78,9 @@ const DEFAULT_METHODS: DeliveryMethodItem[] = [
     }
 ];
 
+/**
+ * Landing page section showcasing the four available service fulfillment methods.
+ */
 export const DeliveryMethods: React.FC<DeliveryMethodsProps> = ({
     headline = "Empat Cara Untuk\nMembuat Kucing Menawan",
     subHeadline = "Reservasi slot Kamu dalam hitungan menit. Pilih 1 dari 4 cara pemenuhan layanan yang paling pas dengan jadwal sibuk Anda.",
@@ -70,14 +96,11 @@ export const DeliveryMethods: React.FC<DeliveryMethodsProps> = ({
             )}
         >
             {/* Header */}
-            <div className="flex flex-col items-center justify-center gap-4 text-center">
-                <h2 className="font-nunito text-h2 font-black text-primary-700 leading-tight whitespace-pre-line">
-                    {headline}
-                </h2>
-                <p className="max-w-[618px] font-nunito text-b1 text-primary-700 leading-normal">
-                    {subHeadline}
-                </p>
-            </div>
+            <SectionHeader
+                headline={headline}
+                subHeadline={subHeadline}
+                subHeadlineClassName="leading-normal"
+            />
 
             {/* Cards Grid */}
             <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

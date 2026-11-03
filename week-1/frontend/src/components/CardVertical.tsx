@@ -7,8 +7,10 @@ import Button, { type ButtonBaseProps } from "@/components/Button";
 
 /* ==========================================================================
    TYPES & INTERFACES
-   ========================================================================= */
+   ========================================================================== */
+/** Button props forwarded directly to the card action button components. */
 export type CardButtonProps = ButtonBaseProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
 /** Horizontal text alignment options for card title and description. */
 export type CardTextAlignment = "left" | "center" | "right";
 
@@ -24,6 +26,12 @@ export interface CardVerticalProps {
      * @defaultValue true
      */
     hasShadow?: boolean;
+
+    /**
+     * Shadow elevation scale matching design system tokens.
+     * @defaultValue "200"
+     */
+    shadowVariant?: "200" | "500";
 
     /**
      * Border appearance style matching Figma variant specifications.
@@ -54,6 +62,15 @@ export interface CardVerticalProps {
 
     /** Custom slot to override default image rendering. */
     imageSlot?: React.ReactNode;
+
+    /** Custom class name applied to the image container element. */
+    imageContainerClassName?: string;
+
+    /** Custom class name applied to the img element. */
+    imageClassName?: string;
+
+    /** Custom class name applied to the content container below the image. */
+    contentClassName?: string;
 
     /**
      * Card heading title content.
@@ -143,6 +160,7 @@ export interface CardVerticalProps {
  */
 export const CardVertical: React.FC<CardVerticalProps> = ({
     hasShadow = true,
+    shadowVariant = "200",
     borderStyle = "default",
     textAlignment = "left",
 
@@ -150,6 +168,9 @@ export const CardVertical: React.FC<CardVerticalProps> = ({
     imageAlt = "Card visual",
     showImage = true,
     imageSlot,
+    imageContainerClassName,
+    imageClassName,
+    contentClassName,
 
     title = "Title",
     showTitle = true,
@@ -183,25 +204,38 @@ export const CardVertical: React.FC<CardVerticalProps> = ({
         none: "border-none border-transparent"
     };
 
+    const shadowClasses = {
+        "200": "shadow-200 hover:shadow-300",
+        "500": "shadow-500 hover:shadow-600"
+    };
+
     return (
         <div
             className={cn(
                 "group flex flex-col w-full max-w-[350px] overflow-hidden rounded-xl bg-surface-white transition-all duration-300",
-                hasShadow ? "shadow-200 hover:shadow-300" : "shadow-none",
+                hasShadow ? shadowClasses[shadowVariant] : "shadow-none",
                 borderClasses[borderStyle],
                 className
             )}
         >
             {/* Section: Header Media / Image Slot */}
             {showImage && (
-                <div className="relative w-full h-[200px] bg-grey-200 overflow-hidden flex-shrink-0">
+                <div
+                    className={cn(
+                        "relative w-full overflow-hidden flex-shrink-0 bg-grey-200",
+                        imageContainerClassName || "h-[200px]"
+                    )}
+                >
                     {imageSlot ? (
                         imageSlot
                     ) : imageSrc ? (
                         <img
                             src={imageSrc}
                             alt={imageAlt}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className={cn(
+                                "w-full h-full object-cover transition-transform duration-300 group-hover:scale-105",
+                                imageClassName
+                            )}
                         />
                     ) : (
                         <div className="w-full h-full bg-grey-200 flex items-center justify-center text-text-disabled font-nunito text-sm">
@@ -211,7 +245,7 @@ export const CardVertical: React.FC<CardVerticalProps> = ({
                 </div>
             )}
 
-            <div className="flex flex-col items-center gap-6 p-6 w-full flex-grow">
+            <div className={cn("flex flex-col items-center gap-6 p-6 w-full flex-grow", contentClassName)}>
                 {showTextBlock && (
                     <div
                         className={cn(

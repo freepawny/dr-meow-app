@@ -5,19 +5,45 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { TabContainer, TabPill } from "@/components/TabPill";
 import PricingCard from "@/components/PricingCard";
-import SizeCard from "@/components/SizeCard";
+import SizeCard from "./SizeCard";
+import SectionHeader from "./SectionHeader";
 
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/**
+ * Props for the Pricing section component.
+ */
 export interface PricingProps {
+    /**
+     * Primary section headline text or node.
+     */
+    headline?: React.ReactNode;
+    /**
+     * Supporting sub-headline descriptive copy.
+     */
+    subHeadline?: React.ReactNode;
+    /** Additional custom CSS class names. */
     className?: string;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
-export const Pricing: React.FC<PricingProps> = ({ className }) => {
+/**
+ * Interactive pricing section featuring category tabs, cat size selectors, and tiered package cards.
+ */
+export const Pricing: React.FC<PricingProps> = ({
+    headline = (
+        <>
+            Solusi Perawatan Tepat
+            <br />
+            untuk Setiap Kondisi
+        </>
+    ),
+    subHeadline = "Tidak ada biaya tersembunyi. Tarif dihitung secara adil berdasarkan rentang berat badan atau kebutuhan kapasitas kucingmu.",
+    className
+}) => {
     const [activeTab, setActiveTab] = useState<"grooming" | "penitipan">("grooming");
     const [selectedSizeGrooming, setSelectedSizeGrooming] = useState<"<2" | ">2" | ">5">("<2");
 
@@ -160,17 +186,11 @@ export const Pricing: React.FC<PricingProps> = ({ className }) => {
             )}
         >
             {/* Header */}
-            <div className="flex flex-col items-center justify-center gap-4 text-center">
-                <h2 className="font-nunito text-h2 font-black text-primary-700">
-                    Solusi Perawatan Tepat
-                    <br />
-                    untuk Setiap Kondisi
-                </h2>
-                <p className="max-w-[810px] font-nunito text-b1 text-primary-700">
-                    Tidak ada biaya tersembunyi. Tarif dihitung secara adil berdasarkan rentang
-                    berat badan atau kebutuhan kapasitas kucingmu.
-                </p>
-            </div>
+            <SectionHeader
+                headline={headline}
+                subHeadline={subHeadline}
+                subHeadlineClassName="max-w-[810px]"
+            />
 
             {/* Tabs */}
             <TabContainer variant="capsule">

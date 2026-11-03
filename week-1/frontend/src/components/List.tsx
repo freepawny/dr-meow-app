@@ -8,7 +8,11 @@ import ListItem from "@/components/ListItem";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/**
+ * Props for the List component.
+ */
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Collection of item data entries to render sequentially. */
     items: Array<{
         id: string | number;
         title: string;
@@ -21,6 +25,9 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/**
+ * Vertical list container component rendering a collection of ListItem components.
+ */
 export const List: React.FC<ListProps> = ({ items, className, ...props }) => {
     return (
         <div className={cn("flex w-full flex-col", className)} {...props}>

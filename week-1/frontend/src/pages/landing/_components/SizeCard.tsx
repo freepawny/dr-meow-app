@@ -7,15 +7,27 @@ import { cn } from "@/lib/utils";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/**
+ * Props for the SizeCard component.
+ */
 export interface SizeCardProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** Primary title indicating weight or size tier. */
     sizeTitle: string;
+    /** Brief description of target cat type or breed size. */
     description: string;
+    /**
+     * Whether this size option is currently selected.
+     * @defaultValue false
+     */
     isSelected?: boolean;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/**
+ * Selectable card button representing a pet size category option.
+ */
 export const SizeCard: React.FC<SizeCardProps> = ({
     sizeTitle,
     description,
@@ -45,4 +57,7 @@ export const SizeCard: React.FC<SizeCardProps> = ({
     );
 };
 
+/* ==========================================================================
+   EXPORTS
+   ========================================================================== */
 export default SizeCard;

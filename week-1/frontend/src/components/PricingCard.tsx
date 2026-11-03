@@ -10,29 +10,64 @@ import { Check } from "lucide-react";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/** Individual feature entry displayed in a pricing tier. */
 export interface PricingFeature {
+    /** Unique identifier for the feature. */
     id: string | number;
+    /** Feature description text. */
     text: string;
 }
 
+/** Visual variant distinguishing standard and highlighted pricing cards. */
 export type PricingCardVariant = "default" | "popular" | (string & {});
 
+/**
+ * Props for the PricingCard component.
+ */
 export interface PricingCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    /**
+     * Card prominence style variant.
+     * @defaultValue "default"
+     */
     variant?: PricingCardVariant;
+    /**
+     * Label text for the header badge.
+     * @defaultValue "Label"
+     */
     badgeLabel?: string;
+    /**
+     * Sub-category or sizing tier text displayed next to the badge.
+     * @defaultValue "Text"
+     */
     subCategory?: string;
+    /** Primary category or plan name. */
     category: string;
+    /** Formatted price string. */
     price: string;
+    /**
+     * Billing frequency or unit suffix.
+     * @defaultValue "/ pcs"
+     */
     priceUnit?: string;
+    /** Summary description of the plan or service. */
     description: string;
+    /** Array of features included in the plan. */
     features: PricingFeature[];
+    /**
+     * Call-to-action button label.
+     * @defaultValue "Choose This Category"
+     */
     buttonLabel?: string;
+    /** Click event handler for the CTA button. */
     onButtonClick?: () => void;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/**
+ * Tiered pricing card component displaying pricing, features list, and call-to-action button.
+ */
 export const PricingCard: React.FC<PricingCardProps> = ({
     variant = "default",
     badgeLabel = "Label",
@@ -126,7 +161,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
                         size="large"
                         variantStyle="filled"
                         onClick={onButtonClick}
-                        className="w-full focus:ring-offset-2" // ensures button focus state is visible
+                        className="w-full focus:ring-offset-2" // NOTE: Retained to ensure keyboard focus state is visible
                     >
                         {buttonLabel}
                     </Button>

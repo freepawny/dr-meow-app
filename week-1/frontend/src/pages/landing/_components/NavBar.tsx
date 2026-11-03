@@ -9,33 +9,65 @@ import Button from "@/components/Button";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/** Navigation link descriptor for the primary header menu. */
 export interface NavItem {
+    /** Unique identifier matching section anchors or tab keys. */
     id: string;
+    /** Text label displayed on the navigation tab. */
     label: string;
+    /** Optional hyperlink destination URL. */
     href?: string;
 }
 
+/**
+ * Props for the Navbar component.
+ */
 export interface NavbarProps {
+    /**
+     * Brand logo image source URL.
+     * @defaultValue "https://api.builder.io/api/v1/image/assets/TEMP/e8963345c9927333c14db8de1d2560e1ba26788e?width=324"
+     */
     logoSrc?: string;
+    /**
+     * Accessible alternative text for the brand logo.
+     * @defaultValue "Logo"
+     */
     logoAlt?: string;
+    /**
+     * Array of navigation items rendered in the navbar.
+     * @defaultValue DEFAULT_NAV_ITEMS
+     */
     items?: NavItem[];
+    /** Identifier of the currently active navigation item. */
     activeId?: string;
+    /** Callback triggered when a navigation item is clicked or selected. */
     onTabChange?: (id: string) => void;
+    /**
+     * Label text for the call-to-action button.
+     * @defaultValue "Reservasi Sekarang"
+     */
     ctaText?: string;
+    /** Callback triggered when the call-to-action button is clicked. */
     onCtaClick?: () => void;
+    /** Target anchor or page URL for the call-to-action link. */
     ctaHref?: string;
+    /** Additional custom CSS class names. */
     className?: string;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/** Default fallback list of navigation tab items. */
 const DEFAULT_NAV_ITEMS: NavItem[] = [
     { id: "layanan", label: "Layanan" },
     { id: "harga", label: "Harga" },
     { id: "faq", label: "FAQ" }
 ];
 
+/**
+ * Responsive navigation bar header with brand logo, tab navigation, mobile toggle menu, and CTA button.
+ */
 export const Navbar: React.FC<NavbarProps> = ({
     logoSrc = "https://api.builder.io/api/v1/image/assets/TEMP/e8963345c9927333c14db8de1d2560e1ba26788e?width=324",
     logoAlt = "Logo",

@@ -79,8 +79,11 @@ export type ButtonProps = ButtonBaseProps &
 /* ==========================================================================
    ATOMIC SUB-COMPONENTS (LUCIDE ICONS WRAPPER)
    ========================================================================== */
+/** Props for the atomic icon wrappers. */
 interface IconProps {
+    /** Additional custom CSS class names. */
     className?: string;
+    /** Whether to render using the tiny icon scale. */
     isTiny?: boolean;
 }
 

@@ -7,35 +7,66 @@ import { cn } from "@/lib/utils";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/** Supported visual variants for the tab container wrapper. */
 export type TabContainerVariant = "default" | "capsule";
 
+/**
+ * Props for the TabContainer component.
+ */
 export interface TabContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-    /** Varian tampilan pembungkus tab: 'default' (polos/inline) atau 'capsule' (Figma Tab v2) */
+    /**
+     * Visual wrapper style: 'default' (inline gap) or 'capsule' (pill outline).
+     * @defaultValue "default"
+     */
     variant?: TabContainerVariant;
+    /** Additional custom CSS class names. */
     className?: string;
+    /** Tab pill items or nested elements. */
     children: React.ReactNode;
 }
 
+/**
+ * Base configuration options for tab pill styling, labeling, and iconography.
+ */
 export interface TabPillBaseProps {
-    /** Teks label tab */
+    /**
+     * Text label displayed inside the tab pill.
+     * @defaultValue "Label"
+     */
     label?: string;
-    /** Menampilkan teks label (default: true) */
+    /**
+     * Controls label text visibility.
+     * @defaultValue true
+     */
     showText?: boolean;
-    /** Status aktif / terpilih */
+    /**
+     * Indicates whether the tab is currently active or selected.
+     * @defaultValue false
+     */
     isSelected?: boolean;
-    /** Menampilkan default ikon bintang kiri */
+    /**
+     * Toggles default leading star icon visibility.
+     * @defaultValue false
+     */
     showLeftIcon?: boolean;
-    /** Menampilkan default ikon bintang kanan */
+    /**
+     * Toggles default trailing star icon visibility.
+     * @defaultValue false
+     */
     showRightIcon?: boolean;
-    /** Kustom node ikon kiri (opsional) */
+    /** Custom icon node rendered before the label. */
     leftIcon?: React.ReactNode;
-    /** Kustom node ikon kanan (opsional) */
+    /** Custom icon node rendered after the label. */
     rightIcon?: React.ReactNode;
-    /** URL tujuan jika tab difungsikan sebagai link navigasi */
+    /** Destination URL when functioning as an anchor navigation link. */
     href?: string;
+    /** Additional custom CSS class names. */
     className?: string;
 }
 
+/**
+ * Polymorphic tab pill props discriminating between standard button and link anchor elements.
+ */
 export type TabPillProps = TabPillBaseProps &
     (
         | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined })
@@ -45,10 +76,15 @@ export type TabPillProps = TabPillBaseProps &
 /* ==========================================================================
    ATOMIC SUB-COMPONENTS (FIGMA STAR ICON)
    ========================================================================== */
+/** Props for the atomic star icon sub-component. */
 interface IconProps {
+    /** Additional custom CSS class names. */
     className?: string;
 }
 
+/**
+ * Internal decorative star icon rendered when icon slots are enabled.
+ */
 const StarIcon: React.FC<IconProps> = ({ className }) => (
     <svg
         className={cn("w-6 h-6 flex-shrink-0", className)}
@@ -70,6 +106,9 @@ const StarIcon: React.FC<IconProps> = ({ className }) => (
 /* ==========================================================================
    TAB CONTAINER COMPONENT (TAB V1 VS TAB V2)
    ========================================================================== */
+/**
+ * Tablist container managing layout and style variants for grouped TabPill items.
+ */
 export const TabContainer = React.forwardRef<HTMLDivElement, TabContainerProps>(
     ({ variant = "default", className, children, ...props }, ref) => {
         return (
@@ -96,6 +135,9 @@ TabContainer.displayName = "TabContainer";
 /* ==========================================================================
    MAIN COMPONENT (ATOMIC TAB PILL ITEM)
    ========================================================================== */
+/**
+ * Polymorphic tab pill component rendering either an interactive button or navigation link.
+ */
 export const TabPill = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, TabPillProps>(
     (
         {

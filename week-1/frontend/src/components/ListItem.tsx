@@ -7,17 +7,31 @@ import { cn } from "@/lib/utils";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/**
+ * Props for the ListItem component.
+ */
 export interface ListItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** Primary label text of the list item. */
     title: string;
+    /** Optional secondary details text displayed on the right. */
     details?: string;
+    /** Optional leading icon element rendered before the title. */
     icon?: React.ReactNode;
+    /** Optional trailing icon element rendered at the far right. */
     rightIcon?: React.ReactNode;
+    /**
+     * Whether the item is currently selected or highlighted.
+     * @defaultValue false
+     */
     selected?: boolean;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/**
+ * Interactive list row item supporting leading/trailing icons and active selection states.
+ */
 export const ListItem: React.FC<ListItemProps> = ({
     title,
     details,

@@ -7,23 +7,56 @@ import { cn } from "@/lib/utils";
 /* ==========================================================================
    TYPES & INTERFACES
    ========================================================================== */
+/** Size scale options for badge height, padding, and font size. */
 export type BadgeSize = "medium" | "small" | "tiny";
+
+/** Semantic state variants representing status and intent. */
 export type BadgeState = "default" | "success" | "info" | "warning" | "error";
+
+/** Visual fill styles for badge surface and border. */
 export type BadgeStyle = "outline" | "filled";
 
+/**
+ * Props for the Badge component.
+ */
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+    /**
+     * Size scale variant.
+     * @defaultValue "medium"
+     */
     size?: BadgeSize;
+    /**
+     * Semantic status or intent variant.
+     * @defaultValue "default"
+     */
     badgeState?: BadgeState;
+    /**
+     * Visual style variant (outline or filled).
+     * @defaultValue "outline"
+     */
     variantStyle?: BadgeStyle;
+    /**
+     * Text label displayed inside the badge.
+     * @defaultValue "Label"
+     */
     label?: string;
+    /** Optional icon node rendered before the label. */
     leftIcon?: React.ReactNode;
+    /** Optional icon node rendered after the label. */
     rightIcon?: React.ReactNode;
+    /**
+     * Controls label visibility.
+     * @defaultValue true
+     */
     showText?: boolean;
 }
 
 /* ==========================================================================
    MAIN COMPONENT
    ========================================================================== */
+/**
+ * Compact badge component for status indicators, categories, and tags.
+ */
 export const Badge: React.FC<BadgeProps> = ({
     size = "medium",
     badgeState = "default",
@@ -35,7 +68,6 @@ export const Badge: React.FC<BadgeProps> = ({
     className,
     ...props
 }) => {
-    // Mapping ukuran (Size)
     const sizeClasses = {
         medium: "h-6 px-2 gap-2",
         small: "h-6 px-2 gap-2",
@@ -43,12 +75,11 @@ export const Badge: React.FC<BadgeProps> = ({
     };
 
     const textClasses = {
-        medium: "font-quicksand font-bold text-b3 leading-none", // 14px
-        small: "font-quicksand font-bold text-c1 leading-none", // 12px
-        tiny: "font-quicksand font-bold text-c3 leading-none" // 10px
+        medium: "font-quicksand font-bold text-b3 leading-none",
+        small: "font-quicksand font-bold text-c1 leading-none",
+        tiny: "font-quicksand font-bold text-c3 leading-none"
     };
 
-    // Mapping warna State & Style
     const getStateColors = (state: BadgeState, style: BadgeStyle) => {
         if (style === "filled") {
             const baseFilled = "text-text-primary-white border-transparent";
@@ -65,7 +96,6 @@ export const Badge: React.FC<BadgeProps> = ({
                     return cn("bg-text-error", baseFilled);
             }
         } else {
-            // Outline style
             const baseOutline = "bg-transparent border";
             switch (state) {
                 case "default":
@@ -84,7 +114,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
     const colorClasses = getStateColors(badgeState, variantStyle);
 
-    // Karena icon bawaan text color harus menyesuaikan state
+    // NOTE: Default text color of icons must align with the current state and style
     const iconWrapperClasses = variantStyle === "filled" ? "text-white" : "";
 
     return (
