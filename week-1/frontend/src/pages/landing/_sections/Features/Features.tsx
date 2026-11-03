@@ -55,21 +55,15 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
     return (
         <section
             aria-label="Features Section"
-            className={cn(
-                "relative w-full flex flex-col items-center justify-center py-16 md:py-[64px]",
-                className
-            )}
+            className={cn("relative w-full flex flex-col items-center justify-center ", className)}
         >
             {/* Main Content Container */}
-            <div className="relative z-10 w-full px-4 md:px-8 flex flex-col items-center justify-center gap-8 md:gap-12">
+            <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8 md:gap-12">
                 {/* Header Block */}
-                <SectionHeader
-                    headline={headline}
-                    subHeadline={subHeadline}
-                />
+                <SectionHeader headline={headline} subHeadline={subHeadline} />
 
-                {/* Cards Grid */}
-                <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap justify-center items-start gap-6 w-full">
+                {/* Cards Container */}
+                <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap justify-between items-stretch gap-6 w-full">
                     {features.map((feature) => (
                         <CardVertical
                             key={feature.id}
@@ -87,7 +81,7 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
                                     {feature.description}
                                 </span>
                             }
-                            className="md:w-1/3 lg:max-w-[350px] bg-surface-white"
+                            className="w-full md:w-[calc(50%-12px)] lg:w-auto lg:flex-1 bg-surface-white"
                         />
                     ))}
                 </div>

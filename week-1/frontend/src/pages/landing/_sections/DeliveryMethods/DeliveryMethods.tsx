@@ -56,7 +56,7 @@ export const DeliveryMethods: React.FC<DeliveryMethodsProps> = ({
         <section
             aria-label="Delivery Methods Section"
             className={cn(
-                "flex w-full flex-col items-center justify-center gap-8 py-8 px-4 md:px-8 overflow-hidden",
+                "flex w-full flex-col items-center justify-center gap-8 ",
                 className
             )}
         >

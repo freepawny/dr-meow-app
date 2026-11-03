@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <section
             aria-label="Hero Section"
             className={cn(
-                "relative w-full flex items-center justify-center overflow-hidden bg-surface-white px-4 py-16 md:py-28",
+                "relative w-full flex items-center justify-center overflow-hidden bg-surface-white",
                 className
             )}
         >

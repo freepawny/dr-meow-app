@@ -72,7 +72,7 @@ export const BeforeAfter: FC<BeforeAfterProps> = ({
         <section
             aria-label="Before After Section"
             className={cn(
-                "flex w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 py-8",
+                "flex w-full flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12",
                 className
             )}
         >

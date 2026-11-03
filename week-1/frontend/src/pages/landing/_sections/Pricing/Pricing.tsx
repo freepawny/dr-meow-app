@@ -58,7 +58,7 @@ export const Pricing: React.FC<PricingProps> = ({
         <section
             aria-label="Pricing Section"
             className={cn(
-                "flex w-full flex-col items-center gap-8 py-8 px-4 md:px-8",
+                "flex w-full flex-col items-center gap-8 ",
                 className
             )}
         >

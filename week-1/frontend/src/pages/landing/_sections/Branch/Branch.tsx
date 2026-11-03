@@ -67,7 +67,7 @@ export const Branch: FC<BranchProps> = ({
     return (
         <section
             aria-label="Branch Section"
-            className={cn("flex w-full flex-col items-center justify-center gap-8 py-8", className)}
+            className={cn("flex w-full flex-col items-center justify-center gap-8", className)}
         >
             <SectionHeader headline={headline} subHeadline={subHeadline} />
 
