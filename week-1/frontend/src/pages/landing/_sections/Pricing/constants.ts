@@ -1,31 +1,52 @@
 import type { PricingFeature, PricingCardVariant } from "./PricingCard";
 
+/** Default section headline text for the Pricing section. */
 export const DEFAULT_HEADLINE = "Solusi Perawatan Tepat\nuntuk Setiap Kondisi";
 
+/** Default supporting sub-headline copy for the Pricing section. */
 export const DEFAULT_SUBHEADLINE =
     "Tidak ada biaya tersembunyi. Tarif dihitung secara adil berdasarkan rentang berat badan atau kebutuhan kapasitas kucingmu.";
 
+/** Supported cat size weight tiers for dynamic grooming plan pricing. */
 export type CatSizeTier = "<2" | ">2" | ">5";
 
+/** Data model representing a single pricing package plan item. */
 export interface PricingPlanItem {
+    /** Unique identifier for the pricing plan. */
     id: string;
+    /** Header badge text indicating category or package intent. */
     badgeLabel: string;
+    /** Optional visual prominence variant for highlighted tiers. */
     variant?: PricingCardVariant;
+    /** Target cat size or room dimension specification. */
     subCategory: string;
+    /** Name of the service or accommodation plan. */
     category: string;
+    /** Formatted price string. */
     price: string;
+    /** Billing frequency or unit suffix. */
     priceUnit?: string;
+    /** Brief description of clinical or boarding care provided. */
     description: string;
+    /** List of included features and treatments. */
     features: PricingFeature[];
+    /** Label text for the call-to-action button. */
     buttonLabel: string;
 }
 
+/** Base pricing lookup matrix organized by service type and weight tier. */
 export const GROOMING_PRICING: Record<string, Record<CatSizeTier, string>> = {
     hairSkin: { "<2": "Rp 55.000", ">2": "Rp 60.000", ">5": "Rp 65.000" },
     complete: { "<2": "Rp 55.000", ">2": "Rp 60.000", ">5": "Rp 65.000" },
     sensitive: { "<2": "Rp 60.000", ">2": "Rp 65.000", ">5": "Rp 70.000" }
 };
 
+/**
+ * Generates grooming tier plans tailored to the specified cat size weight bracket.
+ *
+ * @param selectedSize - Currently active cat size tier filter (`"<2"`, `">2"`, or `">5"`).
+ * @returns Array of pricing plan items configured with dynamic rates and descriptions.
+ */
 export const getGroomingData = (selectedSize: CatSizeTier): PricingPlanItem[] => {
     const sizeLabel =
         selectedSize === "<2"
@@ -93,6 +114,7 @@ export const getGroomingData = (selectedSize: CatSizeTier): PricingPlanItem[] =>
     ];
 };
 
+/** Default catalog of boarding and cage accommodation options. */
 export const PENITIPAN_DATA: PricingPlanItem[] = [
     {
         id: "kandang-standar",

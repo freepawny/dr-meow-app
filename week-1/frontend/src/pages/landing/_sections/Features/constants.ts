@@ -8,8 +8,10 @@ export interface FeatureData {
     description: string;
 }
 
+/** Default section headline text for the Features section. */
 export const DEFAULT_HEADLINE = "Kenapa DR. MEOWW Berbeda?";
 
+/** Default supporting sub-headline copy for the Features section. */
 export const DEFAULT_SUBHEADLINE =
     "Kami tidak sembarangan memandikan kucing. Kami menerapkan protokol kesehatan berlapis untuk memastikan anabul pulang dalam keadaan cantik, sehat, dan bebas stres.";
 

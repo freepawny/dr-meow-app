@@ -10,8 +10,10 @@ export interface DeliveryMethodItem {
     description: string;
 }
 
+/** Default section headline text for the DeliveryMethods section. */
 export const DEFAULT_HEADLINE = "Empat Cara Untuk\nMembuat Kucing Menawan";
 
+/** Default supporting sub-headline copy for the DeliveryMethods section. */
 export const DEFAULT_SUBHEADLINE =
     "Reservasi slot Kamu dalam hitungan menit. Pilih 1 dari 4 cara pemenuhan layanan yang paling pas dengan jadwal sibuk Anda.";
 

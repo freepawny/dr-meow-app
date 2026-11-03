@@ -12,8 +12,10 @@ export interface BeforeAfterItem {
     afterAlt?: string;
 }
 
+/** Default section headline text for the BeforeAfter showcase. */
 export const DEFAULT_HEADLINE = "Lihat Bagaimana Perubahan Kucing-Kucing Ini";
 
+/** Default supporting sub-headline copy for the BeforeAfter showcase. */
 export const DEFAULT_SUBHEADLINE =
     "Jangan hanya percaya kata-kata kami. Lihat transformasi dan cerita bahagia dari para Paw Parents di Malang.";
 

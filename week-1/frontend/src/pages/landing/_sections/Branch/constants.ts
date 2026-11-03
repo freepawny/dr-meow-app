@@ -25,11 +25,14 @@ export interface BranchItem {
     mapButtonText?: string;
 }
 
+/** Default headline text for the Branch section. */
 export const DEFAULT_HEADLINE = "Kunjungi Cabang DR. MEOWW Terdekat";
 
+/** Default operational schedule sub-headline for the Branch section. */
 export const DEFAULT_SUBHEADLINE =
     "Buka setiap hari (kecuali hari Jumat) pukul 08.00 – 17.00 WIB.";
 
+/** Default brand logo image source URL. */
 export const DEFAULT_LOGO_SRC =
     "https://api.builder.io/api/v1/image/assets/TEMP/32566a6f6b486523f5a80de70ce749e97c0e95af?width=516";
 

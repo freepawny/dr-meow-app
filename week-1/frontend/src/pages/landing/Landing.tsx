@@ -1,3 +1,6 @@
+/* ==========================================================================
+   IMPORTS & UTILITIES
+   ========================================================================== */
 import NavBar from "./_components/NavBar";
 import Hero from "./_sections/Hero";
 import Features from "./_sections/Features";
@@ -7,6 +10,12 @@ import BeforeAfter from "./_sections/BeforeAfter";
 import Branch from "./_sections/Branch";
 import FAQ from "./_sections/FAQ";
 
+/* ==========================================================================
+   MAIN COMPONENT
+   ========================================================================== */
+/**
+ * Primary landing page component assembling all marketing sections and global header navigation.
+ */
 export default function Landing() {
     return (
         <div className="min-h-screen bg-surface-white">
