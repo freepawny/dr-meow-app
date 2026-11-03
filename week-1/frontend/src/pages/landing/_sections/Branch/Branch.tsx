@@ -67,15 +67,9 @@ export const Branch: FC<BranchProps> = ({
     return (
         <section
             aria-label="Branch Section"
-            className={cn(
-                "flex w-full flex-col items-center justify-center gap-8 py-8",
-                className
-            )}
+            className={cn("flex w-full flex-col items-center justify-center gap-8 py-8", className)}
         >
-            <SectionHeader
-                headline={headline}
-                subHeadline={subHeadline}
-            />
+            <SectionHeader headline={headline} subHeadline={subHeadline} />
 
             <div className="flex w-full max-w-[978px] flex-col items-center">
                 <div className="relative hidden h-[190px] w-[520px] md:flex flex-col items-center drop-shadow-[0_6px_14px_rgba(19,25,39,0.12)] drop-shadow-[0_10px_32px_rgba(19,25,39,0.10)]">
@@ -103,7 +97,12 @@ export const Branch: FC<BranchProps> = ({
                     </div>
                 </div>
 
-                <div className="mb-6 flex md:hidden items-center justify-center rounded-[32px] bg-white p-4 shadow-500">
+                <div
+                    className={cn(
+                        "mb-6 flex md:hidden items-center justify-center rounded-[32px] bg-white p-4 shadow-500",
+                        "hover:scale-[1.02] hover:shadow-600 hover:z-10"
+                    )}
+                >
                     <img
                         src={logoSrc}
                         alt="DR. MEOWW Logo"
@@ -146,8 +145,12 @@ export const Branch: FC<BranchProps> = ({
                                 <div className="flex w-full items-start gap-2 text-grey-600 font-nunito text-b1 leading-6">
                                     <MapPin className="h-6 w-6 shrink-0 text-blue-700 mt-0.5" />
                                     <p>
-                                        <strong className="font-black">{branch.addressRoad}, </strong>
-                                        <span className="font-normal">{branch.addressDistrict}</span>
+                                        <strong className="font-black">
+                                            {branch.addressRoad},{" "}
+                                        </strong>
+                                        <span className="font-normal">
+                                            {branch.addressDistrict}
+                                        </span>
                                     </p>
                                 </div>
 

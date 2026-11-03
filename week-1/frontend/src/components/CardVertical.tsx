@@ -213,6 +213,7 @@ export const CardVertical: React.FC<CardVerticalProps> = ({
         <div
             className={cn(
                 "group flex flex-col w-full max-w-[350px] overflow-hidden rounded-xl bg-surface-white transition-all duration-300",
+                "hover:scale-[1.02] hover:shadow-600 hover:z-10",
                 hasShadow ? shadowClasses[shadowVariant] : "shadow-none",
                 borderClasses[borderStyle],
                 className

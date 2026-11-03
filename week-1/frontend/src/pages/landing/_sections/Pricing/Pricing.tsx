@@ -108,7 +108,7 @@ export const Pricing: React.FC<PricingProps> = ({
                 )}
 
                 {/* Pricing Cards Grid */}
-                <div className="flex w-full flex-wrap justify-center items-stretch gap-6">
+                <div className="flex w-full flex-wrap md:flex-nowrap justify-center items-stretch gap-6">
                     {activeTab === "grooming"
                         ? groomingData.map((plan) => (
                               <PricingCard
