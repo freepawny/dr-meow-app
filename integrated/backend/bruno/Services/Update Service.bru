@@ -1,0 +1,24 @@
+meta {
+  name: Update Service
+  type: http
+  seq: 4
+}
+put {
+  url: {{baseUrl}}/api/v1/services/5
+  body: json
+  auth: none
+}
+body:json {
+  {
+    "name": "Bruno Test Grooming Updated",
+    "description": "Data telah diperbarui.",
+    "price": 70000,
+    "duration_minutes": 80,
+    "category": "test",
+    "is_active": true
+  }
+}
+assert {
+  res.status: 200
+  res.body.success: true
+}

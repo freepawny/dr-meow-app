@@ -1,0 +1,24 @@
+meta {
+  name: Create Service
+  type: http
+  seq: 3
+}
+post {
+  url: {{baseUrl}}/api/v1/services
+  body: json
+  auth: none
+}
+body:json {
+  {
+    "name": "Bruno Test Grooming",
+    "description": "Layanan untuk menguji POST dari Bruno.",
+    "price": 65000,
+    "duration_minutes": 75,
+    "category": "test",
+    "is_active": true
+  }
+}
+assert {
+  res.status: 201
+  res.body.success: true
+}
