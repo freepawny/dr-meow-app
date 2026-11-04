@@ -1,3 +1,6 @@
+/* ==========================================================================
+   BARREL EXPORTS
+   ========================================================================== */
 export { Pricing, default } from "./Pricing";
 export type { PricingProps } from "./Pricing";
 export { PricingCard } from "./PricingCard";

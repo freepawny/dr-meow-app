@@ -17,7 +17,6 @@ import {
 } from "./constants";
 import { getServices } from "@/services/serviceApi";
 import type { BackendService } from "@/services/types";
-import { RefreshCw, CheckCircle2, AlertCircle } from "lucide-react";
 
 /* ==========================================================================
    TYPES & INTERFACES
@@ -59,6 +58,7 @@ export const Pricing: React.FC<PricingProps> = ({
     const [backendServices, setBackendServices] = useState<BackendService[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    void error; // NOTE: Preserved for upcoming error UI notification handling
 
     const fetchServices = useCallback(async () => {
         setLoading(true);
@@ -80,6 +80,13 @@ export const Pricing: React.FC<PricingProps> = ({
         fetchServices();
     }, [fetchServices]);
 
+    /**
+     * Maps backend service entities into the frontend PricingPlanItem structure.
+     *
+     * @param service - Backend service record containing tier prices and descriptions.
+     * @param selectedSize - Currently active cat size tier filter.
+     * @returns Formatted pricing plan item ready for card presentation.
+     */
     const mapBackendServiceToPlan = (
         service: BackendService,
         selectedSize: CatSizeTier
@@ -133,33 +140,6 @@ export const Pricing: React.FC<PricingProps> = ({
         >
             {/* Header */}
             <SectionHeader headline={headline} subHeadline={subHeadline} />
-
-            {/* Status Koneksi Backend API */}
-            <div className="flex items-center justify-center -mt-2">
-                {loading ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-grey-100 text-grey-600">
-                        <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Menghubungkan ke
-                        Backend...
-                    </span>
-                ) : !error && backendServices.length > 0 ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                        Terhubung ke Backend API ({backendServices.length} paket live)
-                    </span>
-                ) : (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">
-                        <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-                        Mode Offline (Data Dummy)
-                        <button
-                            onClick={fetchServices}
-                            className="ml-1 inline-flex items-center gap-1 underline font-semibold hover:text-amber-900 transition"
-                            title="Klik untuk mencoba menghubungkan kembali"
-                        >
-                            <RefreshCw className="w-3 h-3" /> Coba Hubungkan
-                        </button>
-                    </span>
-                )}
-            </div>
 
             {/* Tabs */}
             <TabContainer variant="capsule">

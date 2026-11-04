@@ -1,5 +1,11 @@
+/* ==========================================================================
+   IMPORTS & UTILITIES
+   ========================================================================== */
 import type { PricingFeature, PricingCardVariant } from "./PricingCard";
 
+/* ==========================================================================
+   CONSTANTS & CONFIG
+   ========================================================================== */
 /** Default section headline text for the Pricing section. */
 export const DEFAULT_HEADLINE = "Solusi Perawatan Tepat\nuntuk Setiap Kondisi";
 
@@ -7,6 +13,9 @@ export const DEFAULT_HEADLINE = "Solusi Perawatan Tepat\nuntuk Setiap Kondisi";
 export const DEFAULT_SUBHEADLINE =
     "Tidak ada biaya tersembunyi. Tarif dihitung secara adil berdasarkan rentang berat badan atau kebutuhan kapasitas kucingmu.";
 
+/* ==========================================================================
+   TYPES & INTERFACES
+   ========================================================================== */
 /** Supported cat size weight tiers for dynamic grooming plan pricing. */
 export type CatSizeTier = "<2" | ">2" | ">5";
 
@@ -34,6 +43,9 @@ export interface PricingPlanItem {
     buttonLabel: string;
 }
 
+/* ==========================================================================
+   PRICING DATA LOOKUP
+   ========================================================================== */
 /** Base pricing lookup matrix organized by service type and weight tier. */
 export const GROOMING_PRICING: Record<string, Record<CatSizeTier, string>> = {
     hairSkin: { "<2": "Rp 55.000", ">2": "Rp 60.000", ">5": "Rp 65.000" },
@@ -41,6 +53,9 @@ export const GROOMING_PRICING: Record<string, Record<CatSizeTier, string>> = {
     sensitive: { "<2": "Rp 60.000", ">2": "Rp 65.000", ">5": "Rp 70.000" }
 };
 
+/* ==========================================================================
+   HELPERS & GENERATORS
+   ========================================================================== */
 /**
  * Generates grooming tier plans tailored to the specified cat size weight bracket.
  *
