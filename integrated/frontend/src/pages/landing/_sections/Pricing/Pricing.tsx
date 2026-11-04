@@ -1,7 +1,7 @@
 /* ==========================================================================
    IMPORTS & UTILITIES
    ========================================================================== */
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { TabContainer, TabPill } from "@/components/TabPill";
 import PricingCard from "./PricingCard";
@@ -9,11 +9,15 @@ import SizeCard from "./SizeCard";
 import SectionHeader from "../../_components/SectionHeader";
 import {
     type CatSizeTier,
+    type PricingPlanItem,
     DEFAULT_HEADLINE,
     DEFAULT_SUBHEADLINE,
     getGroomingData,
     PENITIPAN_DATA
 } from "./constants";
+import { getServices } from "@/services/serviceApi";
+import type { BackendService } from "@/services/types";
+import { RefreshCw, CheckCircle2, AlertCircle } from "lucide-react";
 
 /* ==========================================================================
    TYPES & INTERFACES
@@ -52,7 +56,94 @@ export const Pricing: React.FC<PricingProps> = ({
     const [activeTab, setActiveTab] = useState<"grooming" | "penitipan">("grooming");
     const [selectedSizeGrooming, setSelectedSizeGrooming] = useState<CatSizeTier>("<2");
 
-    const groomingData = getGroomingData(selectedSizeGrooming);
+    const [backendServices, setBackendServices] = useState<BackendService[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchServices = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await getServices(true);
+            if (response.data && Array.isArray(response.data)) {
+                setBackendServices(response.data);
+            }
+        } catch (err: unknown) {
+            const msg =
+                err instanceof Error
+                    ? err.message
+                    : "Gagal memuat data dari backend";
+            setError(msg);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchServices();
+    }, [fetchServices]);
+
+    const mapBackendServiceToPlan = (
+        service: BackendService,
+        selectedSize: CatSizeTier
+    ): PricingPlanItem => {
+        const sizeLabel =
+            selectedSize === "<2"
+                ? "Kecil (< 2 kg)"
+                : selectedSize === ">2"
+                  ? "Sedang (> 2 kg)"
+                  : "Besar (> 5 kg)";
+
+        const additional =
+            selectedSize === ">2" ? 5000 : selectedSize === ">5" ? 10000 : 0;
+        const finalPrice = service.price + additional;
+        const formattedPrice = new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0
+        })
+            .format(finalPrice)
+            .replace(",00", "");
+
+        const badgeLabelMap: Record<string, string> = {
+            basic: "Perawatan Dasar & Rutin",
+            full: "Fokus Terapi & Medis",
+            kitten: "Khusus Anak Kucing",
+            premium: "Perawatan Ekstra Premium"
+        };
+
+        return {
+            id: `backend-${service.id}`,
+            badgeLabel:
+                badgeLabelMap[service.category] ||
+                `Kategori: ${service.category}`,
+            variant: service.category === "full" ? "popular" : "default",
+            subCategory: sizeLabel,
+            category: service.name,
+            price: formattedPrice,
+            priceUnit: "/ ekor",
+            description: service.description,
+            features: [
+                {
+                    id: 1,
+                    text: `Durasi pengerjaan: ±${service.duration_minutes} menit`
+                },
+                { id: 2, text: `Kategori spesialisasi: ${service.category}` },
+                {
+                    id: 3,
+                    text: "Pemeriksaan fisik awal, potong kuku & pembersihan telinga"
+                }
+            ],
+            buttonLabel: `Pilih Paket: ${service.name}`
+        };
+    };
+
+    const currentGroomingData: PricingPlanItem[] =
+        backendServices.length > 0
+            ? backendServices.map((service) =>
+                  mapBackendServiceToPlan(service, selectedSizeGrooming)
+              )
+            : getGroomingData(selectedSizeGrooming);
 
     return (
         <section
@@ -67,6 +158,32 @@ export const Pricing: React.FC<PricingProps> = ({
                 headline={headline}
                 subHeadline={subHeadline}
             />
+
+            {/* Status Koneksi Backend API */}
+            <div className="flex items-center justify-center -mt-2">
+                {loading ? (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-grey-100 text-grey-600">
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Menghubungkan ke Backend...
+                    </span>
+                ) : !error && backendServices.length > 0 ? (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                        Terhubung ke Backend API ({backendServices.length} paket live)
+                    </span>
+                ) : (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                        <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
+                        Mode Offline (Data Dummy)
+                        <button
+                            onClick={fetchServices}
+                            className="ml-1 inline-flex items-center gap-1 underline font-semibold hover:text-amber-900 transition"
+                            title="Klik untuk mencoba menghubungkan kembali"
+                        >
+                            <RefreshCw className="w-3 h-3" /> Coba Hubungkan
+                        </button>
+                    </span>
+                )}
+            </div>
 
             {/* Tabs */}
             <TabContainer variant="capsule">
@@ -108,36 +225,57 @@ export const Pricing: React.FC<PricingProps> = ({
                 )}
 
                 {/* Pricing Cards Grid */}
-                <div className="flex w-full flex-wrap md:flex-nowrap justify-center items-stretch gap-6">
-                    {activeTab === "grooming"
-                        ? groomingData.map((plan) => (
-                              <PricingCard
-                                  key={plan.id}
-                                  badgeLabel={plan.badgeLabel}
-                                  variant={plan.variant}
-                                  subCategory={plan.subCategory}
-                                  category={plan.category}
-                                  price={plan.price}
-                                  priceUnit="/ ekor"
-                                  description={plan.description}
-                                  features={plan.features}
-                                  buttonLabel={plan.buttonLabel}
-                              />
-                          ))
-                        : PENITIPAN_DATA.map((plan) => (
-                              <PricingCard
-                                  key={plan.id}
-                                  badgeLabel={plan.badgeLabel}
-                                  subCategory={plan.subCategory}
-                                  category={plan.category}
-                                  price={plan.price}
-                                  priceUnit={plan.priceUnit}
-                                  description={plan.description}
-                                  features={plan.features}
-                                  buttonLabel={plan.buttonLabel}
-                              />
-                          ))}
-                </div>
+                {loading && activeTab === "grooming" ? (
+                    <div className="flex w-full flex-wrap md:flex-nowrap justify-center items-stretch gap-6">
+                        {[1, 2, 3].map((i) => (
+                            <div
+                                key={i}
+                                className="flex w-full md:max-w-[415px] flex-col rounded-[12px] bg-white p-6 shadow-500 animate-pulse gap-4 min-h-[360px]"
+                            >
+                                <div className="h-6 w-1/3 bg-grey-200 rounded-full" />
+                                <div className="h-8 w-2/3 bg-grey-200 rounded-md mt-2" />
+                                <div className="h-10 w-1/2 bg-grey-300 rounded-md" />
+                                <div className="h-16 w-full bg-grey-100 rounded-md mt-2" />
+                                <div className="space-y-2 mt-4 flex-1">
+                                    <div className="h-4 w-full bg-grey-100 rounded" />
+                                    <div className="h-4 w-4/5 bg-grey-100 rounded" />
+                                </div>
+                                <div className="h-12 w-full bg-grey-200 rounded-lg mt-4" />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex w-full flex-wrap md:flex-nowrap justify-center items-stretch gap-6">
+                        {activeTab === "grooming"
+                            ? currentGroomingData.map((plan) => (
+                                  <PricingCard
+                                      key={plan.id}
+                                      badgeLabel={plan.badgeLabel}
+                                      variant={plan.variant}
+                                      subCategory={plan.subCategory}
+                                      category={plan.category}
+                                      price={plan.price}
+                                      priceUnit="/ ekor"
+                                      description={plan.description}
+                                      features={plan.features}
+                                      buttonLabel={plan.buttonLabel}
+                                  />
+                              ))
+                            : PENITIPAN_DATA.map((plan) => (
+                                  <PricingCard
+                                      key={plan.id}
+                                      badgeLabel={plan.badgeLabel}
+                                      subCategory={plan.subCategory}
+                                      category={plan.category}
+                                      price={plan.price}
+                                      priceUnit={plan.priceUnit}
+                                      description={plan.description}
+                                      features={plan.features}
+                                      buttonLabel={plan.buttonLabel}
+                                  />
+                              ))}
+                    </div>
+                )}
             </div>
         </section>
     );
