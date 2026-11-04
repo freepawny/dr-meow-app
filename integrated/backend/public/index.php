@@ -101,8 +101,9 @@ if (!empty($rawBody)) {
 function validateServiceInput(array $input, bool $isCreating = true): void
 {
     $allowed = [
-        'id', 'badgeLabel', 'variant', 'size', 'name', 'price',
-        'prices', 'priceUnit', 'description', 'features', 'buttonLabel', 'is_active'
+        'id', 'name', 'badge_label', 'badgeLabel', 'description',
+        'is_popular', 'isPopular', 'base_price', 'basePrice',
+        'tier_prices', 'tierPrices', 'features', 'is_active', 'isActive'
     ];
     $unknown = array_diff(array_keys($input), $allowed);
     if ($unknown !== []) {
@@ -110,24 +111,30 @@ function validateServiceInput(array $input, bool $isCreating = true): void
     }
 
     if ($isCreating) {
-        foreach (['name', 'badgeLabel', 'description', 'buttonLabel'] as $field) {
-            if (!array_key_exists($field, $input)) {
-                throw new \InvalidArgumentException("Field '{$field}' is required.");
-            }
+        $hasBadge = array_key_exists('badge_label', $input) || array_key_exists('badgeLabel', $input);
+        $hasBasePrice = array_key_exists('base_price', $input) || array_key_exists('basePrice', $input);
+
+        if (!array_key_exists('name', $input) || !array_key_exists('description', $input) || !$hasBadge || !$hasBasePrice) {
+            throw new \InvalidArgumentException("Fields 'name', 'badge_label', 'description', and 'base_price' are required.");
         }
     }
 
     if (isset($input['name']) && (!is_string($input['name']) || trim($input['name']) === '')) {
         throw new \InvalidArgumentException('Name must be a non-empty string.');
     }
-    if (isset($input['badgeLabel']) && (!is_string($input['badgeLabel']) || trim($input['badgeLabel']) === '')) {
-        throw new \InvalidArgumentException('badgeLabel must be a non-empty string.');
+    $badge = $input['badge_label'] ?? ($input['badgeLabel'] ?? null);
+    if ($badge !== null && (!is_string($badge) || trim($badge) === '')) {
+        throw new \InvalidArgumentException('badge_label must be a non-empty string.');
     }
     if (isset($input['description']) && (!is_string($input['description']) || trim($input['description']) === '')) {
         throw new \InvalidArgumentException('Description must be a non-empty string.');
     }
+    $price = $input['base_price'] ?? ($input['basePrice'] ?? null);
+    if ($price !== null && (!is_int($price) || $price < 0)) {
+        throw new \InvalidArgumentException('base_price must be a non-negative integer.');
+    }
     if (isset($input['features']) && !is_array($input['features'])) {
-        throw new \InvalidArgumentException('Features must be an array.');
+        throw new \InvalidArgumentException('Features must be an array of strings.');
     }
 }
 
@@ -143,9 +150,7 @@ try {
     // GET /api/v1/services
     if ($method === 'GET' && $path === '/api/v1/services') {
         $activeOnly = ($rawActive = $_GET['active'] ?? '') === 'true' || $rawActive === '1';
-        $sizeTier = isset($_GET['size']) && is_string($_GET['size']) ? $_GET['size'] : null;
-
-        $services = $repository->findAll($activeOnly, $sizeTier);
+        $services = $repository->findAll($activeOnly);
         $data = array_map(static fn(Service $s): array => $s->toArray(), $services);
         sendSuccess($data, 'Services retrieved successfully');
     }

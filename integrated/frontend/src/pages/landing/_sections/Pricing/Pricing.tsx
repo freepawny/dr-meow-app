@@ -91,19 +91,31 @@ export const Pricing: React.FC<PricingProps> = ({
                   ? "Sedang (> 2 kg)"
                   : "Besar (> 5 kg)";
 
-        const price = service.prices?.[selectedSize] || service.price;
+        const numericPrice =
+            service.tier_prices?.[selectedSize] ?? service.base_price;
+
+        const formattedPrice = new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0
+        })
+            .format(numericPrice)
+            .replace(",00", "");
 
         return {
             id: service.id,
-            badgeLabel: service.badgeLabel,
-            variant: service.variant,
+            badgeLabel: service.badge_label,
+            variant: service.is_popular ? "popular" : "default",
             size: sizeLabel,
-            name: service.name,
-            price: price,
-            priceUnit: service.priceUnit || "/ ekor",
+            name: `Grooming ${service.name}`,
+            price: formattedPrice,
+            priceUnit: "/ ekor",
             description: service.description,
-            features: service.features || [],
-            buttonLabel: service.buttonLabel
+            features: (service.features || []).map((text, index) => ({
+                id: index + 1,
+                text
+            })),
+            buttonLabel: `Pilih Paket: ${service.name}`
         };
     };
 

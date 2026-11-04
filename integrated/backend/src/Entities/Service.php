@@ -7,21 +7,18 @@ namespace App\Entities;
 final class Service
 {
     /**
-     * @param array<string, string> $prices
-     * @param array<int, array{id: int|string, text: string}> $features
+     * @param array<string, int> $tierPrices
+     * @param array<int, string> $features
      */
     public function __construct(
         private string $id,
-        private string $badgeLabel,
-        private string $variant,
-        private string $size,
         private string $name,
-        private string $price,
-        private array $prices,
-        private string $priceUnit,
+        private string $badgeLabel,
         private string $description,
+        private bool $isPopular,
+        private int $basePrice,
+        private array $tierPrices,
         private array $features,
-        private string $buttonLabel,
         private bool $isActive = true
     ) {
         $this->validate();
@@ -29,18 +26,37 @@ final class Service
 
     public static function fromArray(array $data): self
     {
+        $tierPrices = [];
+        if (is_array($data['tier_prices'] ?? null)) {
+            foreach ($data['tier_prices'] as $tier => $price) {
+                $tierPrices[(string) $tier] = (int) $price;
+            }
+        } elseif (is_array($data['prices'] ?? null)) {
+            foreach ($data['prices'] as $tier => $price) {
+                $tierPrices[(string) $tier] = (int) $price;
+            }
+        }
+
+        $features = [];
+        if (is_array($data['features'] ?? null)) {
+            foreach ($data['features'] as $item) {
+                if (is_string($item)) {
+                    $features[] = $item;
+                } elseif (is_array($item) && isset($item['text'])) {
+                    $features[] = (string) $item['text'];
+                }
+            }
+        }
+
         return new self(
             trim((string) ($data['id'] ?? '')),
-            trim((string) ($data['badgeLabel'] ?? ($data['badge_label'] ?? ''))),
-            trim((string) ($data['variant'] ?? 'default')),
-            trim((string) ($data['size'] ?? '')),
             trim((string) ($data['name'] ?? '')),
-            trim((string) ($data['price'] ?? '')),
-            is_array($data['prices'] ?? null) ? $data['prices'] : [],
-            trim((string) ($data['priceUnit'] ?? ($data['price_unit'] ?? '/ ekor'))),
+            trim((string) ($data['badge_label'] ?? ($data['badgeLabel'] ?? ''))),
             trim((string) ($data['description'] ?? '')),
-            is_array($data['features'] ?? null) ? $data['features'] : [],
-            trim((string) ($data['buttonLabel'] ?? ($data['button_label'] ?? ''))),
+            (bool) ($data['is_popular'] ?? ($data['isPopular'] ?? (($data['variant'] ?? '') === 'popular'))),
+            (int) ($data['base_price'] ?? ($data['basePrice'] ?? ($data['price'] ?? 0))),
+            $tierPrices,
+            $features,
             (bool) ($data['is_active'] ?? ($data['isActive'] ?? true))
         );
     }
@@ -54,10 +70,13 @@ final class Service
             throw new \InvalidArgumentException('Service name is required.');
         }
         if ($this->badgeLabel === '') {
-            throw new \InvalidArgumentException('Service badgeLabel is required.');
+            throw new \InvalidArgumentException('Service badge_label is required.');
         }
         if ($this->description === '') {
             throw new \InvalidArgumentException('Service description is required.');
+        }
+        if ($this->basePrice < 0) {
+            throw new \InvalidArgumentException('Service base_price cannot be negative.');
         }
     }
 
@@ -66,39 +85,14 @@ final class Service
         return $this->id;
     }
 
-    public function getBadgeLabel(): string
-    {
-        return $this->badgeLabel;
-    }
-
-    public function getVariant(): string
-    {
-        return $this->variant;
-    }
-
-    public function getSize(): string
-    {
-        return $this->size;
-    }
-
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function getPrice(): string
+    public function getBadgeLabel(): string
     {
-        return $this->price;
-    }
-
-    public function getPrices(): array
-    {
-        return $this->prices;
-    }
-
-    public function getPriceUnit(): string
-    {
-        return $this->priceUnit;
+        return $this->badgeLabel;
     }
 
     public function getDescription(): string
@@ -106,14 +100,24 @@ final class Service
         return $this->description;
     }
 
+    public function isPopular(): bool
+    {
+        return $this->isPopular;
+    }
+
+    public function getBasePrice(): int
+    {
+        return $this->basePrice;
+    }
+
+    public function getTierPrices(): array
+    {
+        return $this->tierPrices;
+    }
+
     public function getFeatures(): array
     {
         return $this->features;
-    }
-
-    public function getButtonLabel(): string
-    {
-        return $this->buttonLabel;
     }
 
     public function isActive(): bool
@@ -125,16 +129,13 @@ final class Service
     {
         return [
             'id' => $this->id,
-            'badgeLabel' => $this->badgeLabel,
-            'variant' => $this->variant,
-            'size' => $this->size,
             'name' => $this->name,
-            'price' => $this->price,
-            'prices' => $this->prices,
-            'priceUnit' => $this->priceUnit,
+            'badge_label' => $this->badgeLabel,
             'description' => $this->description,
+            'is_popular' => $this->isPopular,
+            'base_price' => $this->basePrice,
+            'tier_prices' => $this->tierPrices,
             'features' => $this->features,
-            'buttonLabel' => $this->buttonLabel,
             'is_active' => $this->isActive,
         ];
     }

@@ -13,21 +13,13 @@ final class ServiceRepository
     /**
      * @return Service[]
      */
-    public function findAll(bool $activeOnly = false, ?string $sizeTier = null): array
+    public function findAll(bool $activeOnly = false): array
     {
         $data = $this->database->read();
         $rows = $data['services'] ?? [];
         $services = [];
 
         foreach ($rows as $row) {
-            // Jika ada filter tier ukuran kucing, sesuaikan harga & ukuran
-            if ($sizeTier !== null && isset($row['prices'][$sizeTier])) {
-                $row['price'] = $row['prices'][$sizeTier];
-                $row['size'] = $sizeTier === '<2'
-                    ? 'Kecil (< 2 kg)'
-                    : ($sizeTier === '>2' ? 'Sedang (> 2 kg)' : 'Besar (> 5 kg)');
-            }
-
             $service = Service::fromArray($row);
             if (!$activeOnly || $service->isActive()) {
                 $services[] = $service;

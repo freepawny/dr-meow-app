@@ -1,5 +1,3 @@
-import type { PricingFeature, PricingCardVariant } from "@/pages/landing/_sections/Pricing/PricingCard";
-
 /**
  * Standard API envelope format returned by the backend.
  */
@@ -11,20 +9,17 @@ export interface ApiResponse<T> {
 }
 
 /**
- * Service entity data model matching PricingPlanItem 1-to-1.
+ * Normalized Service entity data model returned by the backend.
  */
 export interface BackendService {
     id: string;
-    badgeLabel: string;
-    variant?: PricingCardVariant;
-    size: string;
     name: string;
-    price: string;
-    prices?: Record<string, string>;
-    priceUnit?: string;
+    badge_label: string;
     description: string;
-    features: PricingFeature[];
-    buttonLabel: string;
+    is_popular: boolean;
+    base_price: number;
+    tier_prices?: Record<string, number>;
+    features: string[];
     is_active?: boolean;
 }
 

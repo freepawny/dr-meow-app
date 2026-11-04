@@ -2,95 +2,59 @@
     "services": [
         {
             "id": "hair-skin",
-            "badgeLabel": "Perawatan Rutin & Bulu",
-            "variant": "default",
-            "size": "Kecil (< 2 kg)",
-            "name": "Grooming Hair & Skin",
-            "price": "Rp 55.000",
-            "prices": {
-                "<2": "Rp 55.000",
-                ">2": "Rp 60.000",
-                ">5": "Rp 65.000"
-            },
-            "priceUnit": "/ ekor",
+            "name": "Hair & Skin",
+            "badge_label": "Perawatan Rutin & Bulu",
             "description": "Direkomendasikan untuk kulit kering, bulu rusak, rapuh, rontok, dan kasar. Menutrisi serta melembabkan secara optimal.",
+            "is_popular": false,
+            "base_price": 55000,
+            "tier_prices": {
+                "<2": 55000,
+                ">2": 60000,
+                ">5": 65000
+            },
             "features": [
-                {
-                    "id": 1,
-                    "text": "Bebas pilih 4 varian sampo (Botanical, Shinny Black, Whitening, Sensitive Skin)"
-                },
-                {
-                    "id": 2,
-                    "text": "Bebas pilih 3 kategori aroma parfum (Segar, Manis, Powdery)"
-                },
-                {
-                    "id": 3,
-                    "text": "Termasuk potong kuku, bersihkan telinga, urai gimbal & trimming paw"
-                }
+                "Bebas pilih 4 varian sampo (Botanical, Shinny Black, Whitening, Sensitive Skin)",
+                "Bebas pilih 3 kategori aroma parfum (Segar, Manis, Powdery)",
+                "Termasuk potong kuku, bersihkan telinga, urai gimbal & trimming paw"
             ],
-            "buttonLabel": "Pilih Paket: Hair & Skin",
             "is_active": true
         },
         {
             "id": "complete",
-            "badgeLabel": "Fokus Terapi Medis",
-            "variant": "popular",
-            "size": "Kecil (< 2 kg)",
-            "name": "Grooming Komplit",
-            "price": "Rp 55.000",
-            "prices": {
-                "<2": "Rp 55.000",
-                ">2": "Rp 60.000",
-                ">5": "Rp 65.000"
-            },
-            "priceUnit": "/ ekor",
+            "name": "Komplit",
+            "badge_label": "Fokus Terapi Medis",
             "description": "Penanganan tuntas masalah medis kulit: membantu mengurangi kutu, serta menyembuhkan scabies dan jamur dengan bahan aktif terukur.",
+            "is_popular": true,
+            "base_price": 55000,
+            "tier_prices": {
+                "<2": 55000,
+                ">2": 60000,
+                ">5": 65000
+            },
             "features": [
-                {
-                    "id": 1,
-                    "text": "Sampo medis aktif Fipronil (kutu) / Mikonazol & Klorheksidin (jamur)"
-                },
-                {
-                    "id": 2,
-                    "text": "Terapi bilas Lime Sulfur untuk kasus jamur & scabies berat"
-                },
-                {
-                    "id": 3,
-                    "text": "Pemeriksaan fisik menyeluruh (suhu & BB) + Digital Health Report"
-                }
+                "Sampo medis aktif Fipronil (kutu) / Mikonazol & Klorheksidin (jamur)",
+                "Terapi bilas Lime Sulfur untuk kasus jamur & scabies berat",
+                "Pemeriksaan fisik menyeluruh (suhu & BB) + Digital Health Report"
             ],
-            "buttonLabel": "Pilih Paket: Komplit",
             "is_active": true
         },
         {
             "id": "sensitive",
-            "badgeLabel": "Kulit Rentan/Alergi",
-            "variant": "default",
-            "size": "Kecil (< 2 kg)",
-            "name": "Grooming Sensitive Skin",
-            "price": "Rp 60.000",
-            "prices": {
-                "<2": "Rp 60.000",
-                ">2": "Rp 65.000",
-                ">5": "Rp 70.000"
-            },
-            "priceUnit": "/ ekor",
+            "name": "Sensitive Skin",
+            "badge_label": "Kulit Rentan/Alergi",
             "description": "Aman untuk kulit alergi atau dermatitis. 0% Paraben & SLS/SLES, formula ringan non-iritatif dengan pH seimbang.",
+            "is_popular": false,
+            "base_price": 60000,
+            "tier_prices": {
+                "<2": 60000,
+                ">2": 65000,
+                ">5": 70000
+            },
             "features": [
-                {
-                    "id": 1,
-                    "text": "Sampo Hypoallergenic diperkaya ekstrak Oatmeal, Susu, & Vit E"
-                },
-                {
-                    "id": 2,
-                    "text": "Menggunakan degreaser natural (mild) & minim pewangi buatan"
-                },
-                {
-                    "id": 3,
-                    "text": "Pengeringan low-stress dengan suhu hangat terkontrol"
-                }
+                "Sampo Hypoallergenic diperkaya ekstrak Oatmeal, Susu, & Vit E",
+                "Menggunakan degreaser natural (mild) & minim pewangi buatan",
+                "Pengeringan low-stress dengan suhu hangat terkontrol"
             ],
-            "buttonLabel": "Pilih Paket: Sensitive Skin",
             "is_active": true
         }
     ]
