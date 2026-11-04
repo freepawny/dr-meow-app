@@ -19,9 +19,9 @@ export interface PricingPlanItem {
     /** Optional visual prominence variant for highlighted tiers. */
     variant?: PricingCardVariant;
     /** Target cat size or room dimension specification. */
-    subCategory: string;
+    size: string;
     /** Name of the service or accommodation plan. */
-    category: string;
+    name: string;
     /** Formatted price string. */
     price: string;
     /** Billing frequency or unit suffix. */
@@ -59,8 +59,8 @@ export const getGroomingData = (selectedSize: CatSizeTier): PricingPlanItem[] =>
         {
             id: "hair-skin",
             badgeLabel: "Perawatan Rutin & Bulu",
-            subCategory: sizeLabel,
-            category: "Grooming Hair & Skin",
+            size: sizeLabel,
+            name: "Grooming Hair & Skin",
             price: GROOMING_PRICING.hairSkin[selectedSize],
             description:
                 "Direkomendasikan untuk kulit kering, bulu rusak, rapuh, rontok, dan kasar. Menutrisi serta melembabkan secara optimal.",
@@ -81,8 +81,8 @@ export const getGroomingData = (selectedSize: CatSizeTier): PricingPlanItem[] =>
             id: "complete",
             badgeLabel: "Fokus Terapi Medis",
             variant: "popular",
-            subCategory: sizeLabel,
-            category: "Grooming Komplit",
+            size: sizeLabel,
+            name: "Grooming Komplit",
             price: GROOMING_PRICING.complete[selectedSize],
             description:
                 "Penanganan tuntas masalah medis kulit: membantu mengurangi kutu, serta menyembuhkan scabies dan jamur dengan bahan aktif terukur.",
@@ -99,8 +99,8 @@ export const getGroomingData = (selectedSize: CatSizeTier): PricingPlanItem[] =>
         {
             id: "sensitive",
             badgeLabel: "Kulit Rentan/Alergi",
-            subCategory: sizeLabel,
-            category: "Grooming Sensitive Skin",
+            size: sizeLabel,
+            name: "Grooming Sensitive Skin",
             price: GROOMING_PRICING.sensitive[selectedSize],
             description:
                 "Aman untuk kulit alergi atau dermatitis. 0% Paraben & SLS/SLES, formula ringan non-iritatif dengan pH seimbang.",
@@ -119,8 +119,8 @@ export const PENITIPAN_DATA: PricingPlanItem[] = [
     {
         id: "kandang-standar",
         badgeLabel: "Kapasitas 1 Kucing",
-        subCategory: "70 x 70 cm",
-        category: "Kandang Standar",
+        size: "70 x 70 cm",
+        name: "Kandang Standar",
         price: "Rp 30.000",
         priceUnit: "/ hari",
         description:
@@ -135,8 +135,8 @@ export const PENITIPAN_DATA: PricingPlanItem[] = [
     {
         id: "kandang-besar",
         badgeLabel: "Kapasitas 2-3 Kucing",
-        subCategory: "100 x 70 x 70 cm",
-        category: "Kandang Besar",
+        size: "100 x 70 x 70 cm",
+        name: "Kandang Besar",
         price: "Rp 60.000",
         priceUnit: "/ hari",
         description:
@@ -151,8 +151,8 @@ export const PENITIPAN_DATA: PricingPlanItem[] = [
     {
         id: "kandang-ekstra",
         badgeLabel: "Kapasitas 5 Kucing",
-        subCategory: "170 x 70 x 90 cm",
-        category: "Kandang Ekstra Besar",
+        size: "170 x 70 x 90 cm",
+        name: "Kandang Ekstra Besar",
         price: "Rp 120.000",
         priceUnit: "/ hari",
         description:

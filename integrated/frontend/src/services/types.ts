@@ -1,3 +1,5 @@
+import type { PricingFeature, PricingCardVariant } from "@/pages/landing/_sections/Pricing/PricingCard";
+
 /**
  * Standard API envelope format returned by the backend.
  */
@@ -9,26 +11,24 @@ export interface ApiResponse<T> {
 }
 
 /**
- * Service entity data model representing grooming services from backend.
+ * Service entity data model matching PricingPlanItem 1-to-1.
  */
 export interface BackendService {
-    id: number;
+    id: string;
+    badgeLabel: string;
+    variant?: PricingCardVariant;
+    size: string;
     name: string;
+    price: string;
+    prices?: Record<string, string>;
+    priceUnit?: string;
     description: string;
-    price: number;
-    duration_minutes: number;
-    category: string;
-    is_active: boolean;
+    features: PricingFeature[];
+    buttonLabel: string;
+    is_active?: boolean;
 }
 
 /**
  * Payload for creating or updating a service.
  */
-export interface ServiceInput {
-    name?: string;
-    description?: string;
-    price?: number;
-    duration_minutes?: number;
-    category?: string;
-    is_active?: boolean;
-}
+export type ServiceInput = Partial<BackendService>;

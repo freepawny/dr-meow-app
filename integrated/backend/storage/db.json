@@ -1,40 +1,97 @@
 {
     "services": [
         {
-            "id": 1,
-            "name": "Basic Grooming",
-            "description": "Mandi dan perawatan bulu ekstra wangi.",
-            "price": 55000,
-            "duration_minutes": 60,
-            "category": "basic",
+            "id": "hair-skin",
+            "badgeLabel": "Perawatan Rutin & Bulu",
+            "variant": "default",
+            "size": "Kecil (< 2 kg)",
+            "name": "Grooming Hair & Skin",
+            "price": "Rp 55.000",
+            "prices": {
+                "<2": "Rp 55.000",
+                ">2": "Rp 60.000",
+                ">5": "Rp 65.000"
+            },
+            "priceUnit": "/ ekor",
+            "description": "Direkomendasikan untuk kulit kering, bulu rusak, rapuh, rontok, dan kasar. Menutrisi serta melembabkan secara optimal.",
+            "features": [
+                {
+                    "id": 1,
+                    "text": "Bebas pilih 4 varian sampo (Botanical, Shinny Black, Whitening, Sensitive Skin)"
+                },
+                {
+                    "id": 2,
+                    "text": "Bebas pilih 3 kategori aroma parfum (Segar, Manis, Powdery)"
+                },
+                {
+                    "id": 3,
+                    "text": "Termasuk potong kuku, bersihkan telinga, urai gimbal & trimming paw"
+                }
+            ],
+            "buttonLabel": "Pilih Paket: Hair & Skin",
             "is_active": true
         },
         {
-            "id": 2,
-            "name": "Full Grooming",
-            "description": "Mandi, pengeringan, potong kuku, dan pembersihan telinga.",
-            "price": 85000,
-            "duration_minutes": 90,
-            "category": "full",
+            "id": "complete",
+            "badgeLabel": "Fokus Terapi Medis",
+            "variant": "popular",
+            "size": "Kecil (< 2 kg)",
+            "name": "Grooming Komplit",
+            "price": "Rp 55.000",
+            "prices": {
+                "<2": "Rp 55.000",
+                ">2": "Rp 60.000",
+                ">5": "Rp 65.000"
+            },
+            "priceUnit": "/ ekor",
+            "description": "Penanganan tuntas masalah medis kulit: membantu mengurangi kutu, serta menyembuhkan scabies dan jamur dengan bahan aktif terukur.",
+            "features": [
+                {
+                    "id": 1,
+                    "text": "Sampo medis aktif Fipronil (kutu) / Mikonazol & Klorheksidin (jamur)"
+                },
+                {
+                    "id": 2,
+                    "text": "Terapi bilas Lime Sulfur untuk kasus jamur & scabies berat"
+                },
+                {
+                    "id": 3,
+                    "text": "Pemeriksaan fisik menyeluruh (suhu & BB) + Digital Health Report"
+                }
+            ],
+            "buttonLabel": "Pilih Paket: Komplit",
             "is_active": true
         },
         {
-            "id": 3,
-            "name": "Kitten Grooming",
-            "description": "Perawatan khusus untuk anak kucing.",
-            "price": 45000,
-            "duration_minutes": 45,
-            "category": "kitten",
+            "id": "sensitive",
+            "badgeLabel": "Kulit Rentan/Alergi",
+            "variant": "default",
+            "size": "Kecil (< 2 kg)",
+            "name": "Grooming Sensitive Skin",
+            "price": "Rp 60.000",
+            "prices": {
+                "<2": "Rp 60.000",
+                ">2": "Rp 65.000",
+                ">5": "Rp 70.000"
+            },
+            "priceUnit": "/ ekor",
+            "description": "Aman untuk kulit alergi atau dermatitis. 0% Paraben & SLS/SLES, formula ringan non-iritatif dengan pH seimbang.",
+            "features": [
+                {
+                    "id": 1,
+                    "text": "Sampo Hypoallergenic diperkaya ekstrak Oatmeal, Susu, & Vit E"
+                },
+                {
+                    "id": 2,
+                    "text": "Menggunakan degreaser natural (mild) & minim pewangi buatan"
+                },
+                {
+                    "id": 3,
+                    "text": "Pengeringan low-stress dengan suhu hangat terkontrol"
+                }
+            ],
+            "buttonLabel": "Pilih Paket: Sensitive Skin",
             "is_active": true
-        },
-        {
-            "id": 4,
-            "name": "Premium Grooming",
-            "description": "Perawatan lengkap dengan perhatian ekstra.",
-            "price": 120000,
-            "duration_minutes": 120,
-            "category": "premium",
-            "is_active": false
         }
     ]
 }

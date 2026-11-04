@@ -13,13 +13,21 @@ final class ServiceRepository
     /**
      * @return Service[]
      */
-    public function findAll(bool $activeOnly = false): array
+    public function findAll(bool $activeOnly = false, ?string $sizeTier = null): array
     {
         $data = $this->database->read();
         $rows = $data['services'] ?? [];
         $services = [];
 
         foreach ($rows as $row) {
+            // Jika ada filter tier ukuran kucing, sesuaikan harga & ukuran
+            if ($sizeTier !== null && isset($row['prices'][$sizeTier])) {
+                $row['price'] = $row['prices'][$sizeTier];
+                $row['size'] = $sizeTier === '<2'
+                    ? 'Kecil (< 2 kg)'
+                    : ($sizeTier === '>2' ? 'Sedang (> 2 kg)' : 'Besar (> 5 kg)');
+            }
+
             $service = Service::fromArray($row);
             if (!$activeOnly || $service->isActive()) {
                 $services[] = $service;
@@ -29,9 +37,9 @@ final class ServiceRepository
         return $services;
     }
 
-    public function findById(int $id): ?Service
+    public function findById(string $id): ?Service
     {
-        foreach ($this->findAll() as $service) {
+        foreach ($this->findAll(false) as $service) {
             if ($service->getId() === $id) {
                 return $service;
             }
@@ -44,8 +52,10 @@ final class ServiceRepository
         $data = $this->database->read();
         $rows = $data['services'] ?? [];
 
-        $ids = array_map(static fn(array $row): int => (int) ($row['id'] ?? 0), $rows);
-        $attributes['id'] = $ids === [] ? 1 : max($ids) + 1;
+        if (empty($attributes['id'])) {
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $attributes['name'] ?? 'service'), '-'));
+            $attributes['id'] = $slug ?: 'service-' . uniqid();
+        }
 
         $service = Service::fromArray($attributes);
         $rows[] = $service->toArray();
@@ -56,13 +66,13 @@ final class ServiceRepository
         return $service;
     }
 
-    public function update(int $id, array $attributes): ?Service
+    public function update(string $id, array $attributes): ?Service
     {
         $data = $this->database->read();
         $rows = $data['services'] ?? [];
 
         foreach ($rows as $index => $row) {
-            if ((int) ($row['id'] ?? 0) !== $id) {
+            if ((string) ($row['id'] ?? '') !== $id) {
                 continue;
             }
 
@@ -79,13 +89,13 @@ final class ServiceRepository
         return null;
     }
 
-    public function delete(int $id): bool
+    public function delete(string $id): bool
     {
         $data = $this->database->read();
         $rows = $data['services'] ?? [];
 
         foreach ($rows as $index => $row) {
-            if ((int) ($row['id'] ?? 0) === $id) {
+            if ((string) ($row['id'] ?? '') === $id) {
                 array_splice($rows, $index, 1);
                 $data['services'] = $rows;
                 $this->database->write($data);

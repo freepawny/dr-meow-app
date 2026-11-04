@@ -69,10 +69,7 @@ export const Pricing: React.FC<PricingProps> = ({
                 setBackendServices(response.data);
             }
         } catch (err: unknown) {
-            const msg =
-                err instanceof Error
-                    ? err.message
-                    : "Gagal memuat data dari backend";
+            const msg = err instanceof Error ? err.message : "Gagal memuat data dari backend";
             setError(msg);
         } finally {
             setLoading(false);
@@ -94,47 +91,19 @@ export const Pricing: React.FC<PricingProps> = ({
                   ? "Sedang (> 2 kg)"
                   : "Besar (> 5 kg)";
 
-        const additional =
-            selectedSize === ">2" ? 5000 : selectedSize === ">5" ? 10000 : 0;
-        const finalPrice = service.price + additional;
-        const formattedPrice = new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            minimumFractionDigits: 0
-        })
-            .format(finalPrice)
-            .replace(",00", "");
-
-        const badgeLabelMap: Record<string, string> = {
-            basic: "Perawatan Dasar & Rutin",
-            full: "Fokus Terapi & Medis",
-            kitten: "Khusus Anak Kucing",
-            premium: "Perawatan Ekstra Premium"
-        };
+        const price = service.prices?.[selectedSize] || service.price;
 
         return {
-            id: `backend-${service.id}`,
-            badgeLabel:
-                badgeLabelMap[service.category] ||
-                `Kategori: ${service.category}`,
-            variant: service.category === "full" ? "popular" : "default",
-            subCategory: sizeLabel,
-            category: service.name,
-            price: formattedPrice,
-            priceUnit: "/ ekor",
+            id: service.id,
+            badgeLabel: service.badgeLabel,
+            variant: service.variant,
+            size: sizeLabel,
+            name: service.name,
+            price: price,
+            priceUnit: service.priceUnit || "/ ekor",
             description: service.description,
-            features: [
-                {
-                    id: 1,
-                    text: `Durasi pengerjaan: ±${service.duration_minutes} menit`
-                },
-                { id: 2, text: `Kategori spesialisasi: ${service.category}` },
-                {
-                    id: 3,
-                    text: "Pemeriksaan fisik awal, potong kuku & pembersihan telinga"
-                }
-            ],
-            buttonLabel: `Pilih Paket: ${service.name}`
+            features: service.features || [],
+            buttonLabel: service.buttonLabel
         };
     };
 
@@ -148,22 +117,17 @@ export const Pricing: React.FC<PricingProps> = ({
     return (
         <section
             aria-label="Pricing Section"
-            className={cn(
-                "flex w-full flex-col items-center gap-8 ",
-                className
-            )}
+            className={cn("flex w-full flex-col items-center gap-8 ", className)}
         >
             {/* Header */}
-            <SectionHeader
-                headline={headline}
-                subHeadline={subHeadline}
-            />
+            <SectionHeader headline={headline} subHeadline={subHeadline} />
 
             {/* Status Koneksi Backend API */}
             <div className="flex items-center justify-center -mt-2">
                 {loading ? (
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-grey-100 text-grey-600">
-                        <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Menghubungkan ke Backend...
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Menghubungkan ke
+                        Backend...
                     </span>
                 ) : !error && backendServices.length > 0 ? (
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -252,8 +216,8 @@ export const Pricing: React.FC<PricingProps> = ({
                                       key={plan.id}
                                       badgeLabel={plan.badgeLabel}
                                       variant={plan.variant}
-                                      subCategory={plan.subCategory}
-                                      category={plan.category}
+                                      subCategory={plan.size}
+                                      category={plan.name}
                                       price={plan.price}
                                       priceUnit="/ ekor"
                                       description={plan.description}
@@ -265,8 +229,8 @@ export const Pricing: React.FC<PricingProps> = ({
                                   <PricingCard
                                       key={plan.id}
                                       badgeLabel={plan.badgeLabel}
-                                      subCategory={plan.subCategory}
-                                      category={plan.category}
+                                      subCategory={plan.size}
+                                      category={plan.name}
                                       price={plan.price}
                                       priceUnit={plan.priceUnit}
                                       description={plan.description}

@@ -100,14 +100,17 @@ if (!empty($rawBody)) {
 // Helper validasi input data service
 function validateServiceInput(array $input, bool $isCreating = true): void
 {
-    $allowed = ['name', 'description', 'price', 'duration_minutes', 'category', 'is_active'];
+    $allowed = [
+        'id', 'badgeLabel', 'variant', 'size', 'name', 'price',
+        'prices', 'priceUnit', 'description', 'features', 'buttonLabel', 'is_active'
+    ];
     $unknown = array_diff(array_keys($input), $allowed);
     if ($unknown !== []) {
         throw new \InvalidArgumentException('Unknown fields: ' . implode(', ', $unknown));
     }
 
     if ($isCreating) {
-        foreach (['name', 'price', 'duration_minutes', 'category'] as $field) {
+        foreach (['name', 'badgeLabel', 'description', 'buttonLabel'] as $field) {
             if (!array_key_exists($field, $input)) {
                 throw new \InvalidArgumentException("Field '{$field}' is required.");
             }
@@ -117,20 +120,14 @@ function validateServiceInput(array $input, bool $isCreating = true): void
     if (isset($input['name']) && (!is_string($input['name']) || trim($input['name']) === '')) {
         throw new \InvalidArgumentException('Name must be a non-empty string.');
     }
-    if (isset($input['description']) && !is_string($input['description'])) {
-        throw new \InvalidArgumentException('Description must be a string.');
+    if (isset($input['badgeLabel']) && (!is_string($input['badgeLabel']) || trim($input['badgeLabel']) === '')) {
+        throw new \InvalidArgumentException('badgeLabel must be a non-empty string.');
     }
-    if (array_key_exists('price', $input) && (!is_int($input['price']) || $input['price'] < 0)) {
-        throw new \InvalidArgumentException('Price must be a non-negative integer.');
+    if (isset($input['description']) && (!is_string($input['description']) || trim($input['description']) === '')) {
+        throw new \InvalidArgumentException('Description must be a non-empty string.');
     }
-    if (array_key_exists('duration_minutes', $input) && (!is_int($input['duration_minutes']) || $input['duration_minutes'] < 1)) {
-        throw new \InvalidArgumentException('Duration must be a positive integer.');
-    }
-    if (isset($input['category']) && (!is_string($input['category']) || trim($input['category']) === '')) {
-        throw new \InvalidArgumentException('Category must be a non-empty string.');
-    }
-    if (array_key_exists('is_active', $input) && !is_bool($input['is_active'])) {
-        throw new \InvalidArgumentException('is_active must be a boolean.');
+    if (isset($input['features']) && !is_array($input['features'])) {
+        throw new \InvalidArgumentException('Features must be an array.');
     }
 }
 
@@ -146,14 +143,16 @@ try {
     // GET /api/v1/services
     if ($method === 'GET' && $path === '/api/v1/services') {
         $activeOnly = ($rawActive = $_GET['active'] ?? '') === 'true' || $rawActive === '1';
-        $services = $repository->findAll($activeOnly);
+        $sizeTier = isset($_GET['size']) && is_string($_GET['size']) ? $_GET['size'] : null;
+
+        $services = $repository->findAll($activeOnly, $sizeTier);
         $data = array_map(static fn(Service $s): array => $s->toArray(), $services);
         sendSuccess($data, 'Services retrieved successfully');
     }
 
     // GET /api/v1/services/{id}
-    if ($method === 'GET' && preg_match('#^/api/v1/services/(\d+)$#', $path, $matches)) {
-        $id = (int) $matches[1];
+    if ($method === 'GET' && preg_match('#^/api/v1/services/([a-zA-Z0-9_-]+)$#', $path, $matches)) {
+        $id = (string) $matches[1];
         $service = $repository->findById($id);
         if ($service === null) {
             sendError('Service not found', 404);
@@ -169,8 +168,8 @@ try {
     }
 
     // PUT /api/v1/services/{id}
-    if ($method === 'PUT' && preg_match('#^/api/v1/services/(\d+)$#', $path, $matches)) {
-        $id = (int) $matches[1];
+    if ($method === 'PUT' && preg_match('#^/api/v1/services/([a-zA-Z0-9_-]+)$#', $path, $matches)) {
+        $id = (string) $matches[1];
         $existing = $repository->findById($id);
         if ($existing === null) {
             sendError('Service not found', 404);
@@ -184,8 +183,8 @@ try {
     }
 
     // DELETE /api/v1/services/{id}
-    if ($method === 'DELETE' && preg_match('#^/api/v1/services/(\d+)$#', $path, $matches)) {
-        $id = (int) $matches[1];
+    if ($method === 'DELETE' && preg_match('#^/api/v1/services/([a-zA-Z0-9_-]+)$#', $path, $matches)) {
+        $id = (string) $matches[1];
         if (!$repository->delete($id)) {
             sendError('Service not found', 404);
         }
