@@ -66,6 +66,14 @@
             "schedule": "2026-11-08T10:00:00",
             "address": "Jl. Soekarno Hatta No. 15, Malang",
             "preference_notification": true
+        },
+        {
+            "customer_id": "CUS-9A4E47AF",
+            "name": "Prabowo",
+            "phone_number": "08129998889",
+            "schedule": "2026-11-08T08:00:00",
+            "address": "Isekai",
+            "preference_notification": true
         }
     ],
     "cats": [
@@ -79,6 +87,17 @@
             "tempramen": "Friendly",
             "medical_history": "Tidak memiliki riwayat penyakit",
             "last_picture": "https://example.com/cats/mochi.jpg"
+        },
+        {
+            "cat_id": "CAT-14026150",
+            "customer_id": "CUS-9A4E47AF",
+            "name": "Asoe",
+            "weight": 5.5,
+            "breeds": "Lainnya",
+            "vital_temperature": null,
+            "tempramen": "Aktif",
+            "medical_history": "Tidak memiliki riwayat penyakit",
+            "last_picture": null
         }
     ],
     "reservations": [
@@ -94,6 +113,21 @@
             "paymen_status": "Unpaid",
             "before_after": {
                 "before": "https://example.com/reservations/RES-001/before.jpg",
+                "after": null
+            }
+        },
+        {
+            "reservation_id": "RES-0C0447C4",
+            "service_id": "hair-skin",
+            "customer_id": "CUS-9A4E47AF",
+            "cat_id": "CAT-14026150",
+            "service_method": "Antar-Jemput (Pick-up)",
+            "work_status": "Pending",
+            "notification_h1": true,
+            "total_bill": 65000,
+            "paymen_status": "Unpaid",
+            "before_after": {
+                "before": null,
                 "after": null
             }
         }

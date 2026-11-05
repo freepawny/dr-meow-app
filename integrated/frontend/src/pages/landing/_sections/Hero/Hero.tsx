@@ -113,7 +113,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                             size="giant"
                             variantStyle="filled"
                             showRightIcon
-                            href={bookingHref}
+                            href={onBookingClick ? undefined : bookingHref}
                             onClick={onBookingClick}
                             className="rounded-[12px] px-6 py-4 w-full sm:w-auto"
                         >

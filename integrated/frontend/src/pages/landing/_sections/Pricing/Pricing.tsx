@@ -37,6 +37,8 @@ export interface PricingProps {
      * @defaultValue DEFAULT_SUBHEADLINE
      */
     subHeadline?: React.ReactNode;
+    /** Callback triggered when user clicks a package CTA button. */
+    onSelectPlan?: (planId: string, selectedSize: CatSizeTier) => void;
     /** Additional custom CSS class names. */
     className?: string;
 }
@@ -50,6 +52,7 @@ export interface PricingProps {
 export const Pricing: React.FC<PricingProps> = ({
     headline = DEFAULT_HEADLINE,
     subHeadline = DEFAULT_SUBHEADLINE,
+    onSelectPlan,
     className
 }) => {
     const [activeTab, setActiveTab] = useState<"grooming" | "penitipan">("grooming");
@@ -222,6 +225,9 @@ export const Pricing: React.FC<PricingProps> = ({
                                       description={plan.description}
                                       features={plan.features}
                                       buttonLabel={plan.buttonLabel}
+                                      onButtonClick={() =>
+                                          onSelectPlan?.(plan.id, selectedSizeGrooming)
+                                      }
                                   />
                               ))
                             : PENITIPAN_DATA.map((plan) => (
@@ -235,6 +241,9 @@ export const Pricing: React.FC<PricingProps> = ({
                                       description={plan.description}
                                       features={plan.features}
                                       buttonLabel={plan.buttonLabel}
+                                      onButtonClick={() =>
+                                          onSelectPlan?.(plan.id, selectedSizeGrooming)
+                                      }
                                   />
                               ))}
                     </div>
