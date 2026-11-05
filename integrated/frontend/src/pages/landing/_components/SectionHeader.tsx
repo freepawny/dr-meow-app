@@ -55,7 +55,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     return (
         <div className={cn("flex flex-col gap-4", alignContainerClasses[align])}>
             {headline && (
-                <h2 className="font-nunito font-black text-h3 md:text-h1 text-primary-700 leading-tight whitespace-pre-line">
+                <h2 className="w-full font-nunito font-black text-h3 md:text-h1 text-primary-700 leading-tight whitespace-pre-line">
                     {headline}
                 </h2>
             )}

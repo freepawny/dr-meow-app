@@ -18,10 +18,10 @@ import FAQ from "./_sections/FAQ";
  */
 export default function Landing() {
     return (
-        <div className="min-h-screen bg-surface-white">
+        <div className="min-h-screen bg-surface-white overflow-x-clip       ">
             <NavBar />
             <div className="w-full max-w-container mx-auto px-px-mobile md:px-0">
-                <main className="flex flex-col gap-50 md:gap-70 py-8">
+                <main className="flex flex-col gap-50 md:gap-60 py-8">
                     <Hero className="pt-8 md:pt-32" />
                     <Features />
                     <Pricing />

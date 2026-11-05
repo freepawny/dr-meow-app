@@ -1,15 +1,15 @@
 /** Default leading headline prefix text. */
-export const DEFAULT_TITLE_PREFIX = "Gak Sekadar Bersih!\nGrooming Kucing Standar ";
+export const DEFAULT_TITLE_PREFIX = "Gak Cuma Wangi! \n Grooming Kucing Berstandar ";
 
 /** Default highlighted accent headline text. */
 export const DEFAULT_TITLE_HIGHLIGHT = "Medis Veteriner";
 
 /** Default supporting value proposition paragraph. */
 export const DEFAULT_DESCRIPTION =
-    "Rawat kucing kesayangan lebih praktis dan higienis dengan formula hypoallergenic bebas SLS/SLES yang aman untuk kulit sensitif. Tersedia layanan jemput ke rumah atau kunjungi langsung cabang Sukun dan Pakis!";
+    "Dari perawatan bulu rontok hingga terapi tuntas jamur dan kutu — semua ditangani langsung oleh paramedis veteriner dengan teknik low-stress handling. Bisa datang langsung, dipanggil ke rumah, atau dijemput kurir kami mulai Rp5.000 saja!";
 
 /** Default primary booking CTA label text. */
-export const DEFAULT_BOOKING_TEXT = "BOOKING";
+export const DEFAULT_BOOKING_TEXT = "Reservasi Jadwal Sekarang";
 
 /** Default primary booking CTA anchor href target. */
 export const DEFAULT_BOOKING_HREF = "#booking";

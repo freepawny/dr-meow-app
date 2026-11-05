@@ -69,16 +69,16 @@ export const Branch: FC<BranchProps> = ({
         <section
             aria-label="Branch Section"
             className={cn(
-                "relative flex w-full flex-col items-center justify-center gap-8",
+                "relative flex w-full flex-col items-center justify-center",
                 className
             )}
         >
             <BackgroundPattern color="yellow" minDistance="min-h-[1180px] lg:min-h-[780px]" />
 
-            <div className="z-10">
+            <div className="flex flex-col gap-8 z-10">
                 <SectionHeader headline={headline} subHeadline={subHeadline} />
 
-                <div className="flex w-full max-w-[978px] flex-col items-center">
+                <div className="flex w-full max-w-[978px] flex-col items-center ">
                     <div className="relative hidden h-[190px] w-[520px] md:flex flex-col items-center drop-shadow-[0_6px_14px_rgba(19,25,39,0.12)] drop-shadow-[0_10px_32px_rgba(19,25,39,0.10)]">
                         <svg
                             className="absolute left-0 top-[97px]"

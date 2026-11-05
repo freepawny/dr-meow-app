@@ -58,10 +58,10 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
             aria-label="Features Section"
             className={cn("relative w-full flex flex-col items-center justify-center ", className)}
         >
-            <BackgroundPattern color="yellow" minDistance="min-h-[1200px] lg:min-h-[650px]" />
+            <BackgroundPattern color="yellow" minDistance="min-h-[1180px] lg:min-h-[650px]" />
             
             {/* Main Content Container */}
-            <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8 md:gap-12">
+            <div className="relative z-10 w-full flex flex-col items-center justify-center md:gap-8">
                 {/* Header Block */}
                 <SectionHeader headline={headline} subHeadline={subHeadline} />
 
