@@ -101,7 +101,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                         headline={
                             <>
                                 {titlePrefix}
-                                <span className="text-text-accent">{titleHighlight}</span>
+                                <div className="text-text-accent">{titleHighlight}</div>
                             </>
                         }
                         subHeadline={description}

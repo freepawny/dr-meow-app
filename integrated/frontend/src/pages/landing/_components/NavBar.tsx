@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     return (
         <header
             className={cn(
-                "w-full bg-surface-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-grey-100",
+                "w-full bg-surface-white/60 backdrop-blur-sm sticky top-0 z-50 border-b border-grey-100",
                 className
             )}
         >

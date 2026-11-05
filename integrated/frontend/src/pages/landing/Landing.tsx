@@ -21,8 +21,8 @@ export default function Landing() {
         <div className="min-h-screen bg-surface-white">
             <NavBar />
             <div className="w-full max-w-container mx-auto px-px-mobile md:px-0">
-                <main className="flex flex-col gap-50 md:gap-100 py-8">
-                    <Hero className="pt-32" />
+                <main className="flex flex-col gap-50 md:gap-70 py-8">
+                    <Hero className="pt-8 md:pt-32" />
                     <Features />
                     <Pricing />
                     <DeliveryMethods />

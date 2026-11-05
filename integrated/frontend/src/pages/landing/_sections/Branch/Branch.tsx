@@ -73,7 +73,7 @@ export const Branch: FC<BranchProps> = ({
                 className
             )}
         >
-            <BackgroundPattern color="yellow" minDistance="min-h-[1220px] lg:min-h-[1000px]" />
+            <BackgroundPattern color="yellow" minDistance="min-h-[1180px] lg:min-h-[780px]" />
 
             <div className="z-10">
                 <SectionHeader headline={headline} subHeadline={subHeadline} />

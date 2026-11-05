@@ -61,7 +61,7 @@ export const DeliveryMethods: React.FC<DeliveryMethodsProps> = ({
                 className
             )}
         >
-            <BackgroundPattern color="blue" minDistance="min-h-[1900px] lg:min-h-[1000px]"  />
+            <BackgroundPattern color="blue" minDistance="min-h-[1860px] lg:min-h-[800px]"  />
 
             <div className="flex flex-col gap-8 z-10">
                 {/* Header */}
