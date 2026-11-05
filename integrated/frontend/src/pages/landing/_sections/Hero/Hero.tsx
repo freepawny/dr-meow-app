@@ -92,6 +92,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 className
             )}
         >
+
             {/* Main Content Container */}
             <div className="relative z-10 w-full flex flex-col items-center justify-center text-center">
                 <div className="flex flex-col items-center justify-center max-w-[626px] gap-6">

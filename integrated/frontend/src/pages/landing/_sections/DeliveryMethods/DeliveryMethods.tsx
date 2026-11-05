@@ -5,6 +5,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import CardVertical from "@/components/CardVertical";
 import SectionHeader from "../../_components/SectionHeader";
+import BackgroundPattern from "../../_components/BackgroundPattern";
 import {
     type DeliveryMethodItem,
     DEFAULT_METHODS,
@@ -56,33 +57,34 @@ export const DeliveryMethods: React.FC<DeliveryMethodsProps> = ({
         <section
             aria-label="Delivery Methods Section"
             className={cn(
-                "flex w-full flex-col items-center justify-center gap-8 ",
+                "relative flex w-full flex-col items-center justify-center",
                 className
             )}
         >
-            {/* Header */}
-            <SectionHeader
-                headline={headline}
-                subHeadline={subHeadline}
-            />
+            <BackgroundPattern color="blue" minDistance="min-h-[1900px] lg:min-h-[1000px]"  />
 
-            {/* Cards Grid */}
-            <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {methods.map((method) => (
-                    <CardVertical
-                        key={method.id}
-                        hasShadow={false}
-                        borderStyle="none"
-                        textAlignment="center"
-                        showButtons={false}
-                        showItems={false}
-                        showImage={true}
-                        imageSrc={method.imageSrc}
-                        imageAlt={method.title}
-                        title={method.title}
-                        description={method.description}
-                    />
-                ))}
+            <div className="flex flex-col gap-8 z-10">
+                {/* Header */}
+                <SectionHeader headline={headline} subHeadline={subHeadline} />
+
+                {/* Cards Grid */}
+                <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    {methods.map((method) => (
+                        <CardVertical
+                            key={method.id}
+                            hasShadow={false}
+                            borderStyle="none"
+                            textAlignment="center"
+                            showButtons={false}
+                            showItems={false}
+                            showImage={true}
+                            imageSrc={method.imageSrc}
+                            imageAlt={method.title}
+                            title={method.title}
+                            description={method.description}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );

@@ -39,6 +39,6 @@ export async function apiRequest<T>(
         if (err instanceof Error) {
             throw err;
         }
-        throw new Error("Terjadi kesalahan jaringan atau server tidak merespons.");
+        throw new Error("Terjadi kesalahan jaringan atau server tidak merespons.", { cause: err });
     }
 }

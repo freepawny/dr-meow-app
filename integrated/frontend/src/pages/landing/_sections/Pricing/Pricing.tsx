@@ -1,7 +1,7 @@
 /* ==========================================================================
    IMPORTS & UTILITIES
    ========================================================================== */
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { TabContainer, TabPill } from "@/components/TabPill";
 import PricingCard from "./PricingCard";
@@ -60,25 +60,32 @@ export const Pricing: React.FC<PricingProps> = ({
     const [error, setError] = useState<string | null>(null);
     void error; // NOTE: Preserved for upcoming error UI notification handling
 
-    const fetchServices = useCallback(async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await getServices(true);
-            if (response.data && Array.isArray(response.data)) {
-                setBackendServices(response.data);
-            }
-        } catch (err: unknown) {
-            const msg = err instanceof Error ? err.message : "Gagal memuat data dari backend";
-            setError(msg);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
     useEffect(() => {
-        fetchServices();
-    }, [fetchServices]);
+        let isMounted = true;
+        const loadServices = async () => {
+            try {
+                const response = await getServices(true);
+                if (isMounted && response.data && Array.isArray(response.data)) {
+                    setBackendServices(response.data);
+                }
+            } catch (err: unknown) {
+                if (isMounted) {
+                    const msg = err instanceof Error ? err.message : "Gagal memuat data dari backend";
+                    setError(msg);
+                }
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        void loadServices();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     /**
      * Maps backend service entities into the frontend PricingPlanItem structure.

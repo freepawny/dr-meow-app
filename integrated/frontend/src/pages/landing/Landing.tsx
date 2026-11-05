@@ -21,8 +21,8 @@ export default function Landing() {
         <div className="min-h-screen bg-surface-white">
             <NavBar />
             <div className="w-full max-w-container mx-auto px-px-mobile md:px-0">
-                <main className="flex flex-col gap-12 md:gap-16 py-8">
-                    <Hero />
+                <main className="flex flex-col gap-50 md:gap-100 py-8">
+                    <Hero className="pt-32" />
                     <Features />
                     <Pricing />
                     <DeliveryMethods />
@@ -35,9 +35,6 @@ export default function Landing() {
                         © {new Date().getFullYear()} DR. MEOWW. Hak cipta dilindungi undang-undang.
                     </p>
                 </footer>
-                <footer></footer>
-                <footer></footer>
-                <footer></footer>
             </div>
         </div>
     );

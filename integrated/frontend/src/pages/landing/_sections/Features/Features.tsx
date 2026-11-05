@@ -5,6 +5,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import CardVertical from "@/components/CardVertical";
 import SectionHeader from "../../_components/SectionHeader";
+import BackgroundPattern from "../../_components/BackgroundPattern";
 import {
     type FeatureData,
     DEFAULT_FEATURES,
@@ -57,6 +58,8 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({
             aria-label="Features Section"
             className={cn("relative w-full flex flex-col items-center justify-center ", className)}
         >
+            <BackgroundPattern color="yellow" minDistance="min-h-[1300px] lg:min-h-[850px]" />
+            
             {/* Main Content Container */}
             <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8 md:gap-12">
                 {/* Header Block */}
