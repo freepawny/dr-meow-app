@@ -57,5 +57,45 @@
             ],
             "is_active": true
         }
+    ],
+    "customers": [
+        {
+            "customer_id": "CUS-001",
+            "name": "Nadia Putri",
+            "phone_number": "081234567890",
+            "schedule": "2026-11-08T10:00:00",
+            "address": "Jl. Soekarno Hatta No. 15, Malang",
+            "preference_notification": true
+        }
+    ],
+    "cats": [
+        {
+            "cat_id": "CAT-001",
+            "customer_id": "CUS-001",
+            "name": "Mochi",
+            "weight": 1.8,
+            "breeds": "Persian",
+            "vital_temperature": 38.2,
+            "tempramen": "Friendly",
+            "medical_history": "Tidak memiliki riwayat penyakit",
+            "last_picture": "https://example.com/cats/mochi.jpg"
+        }
+    ],
+    "reservations": [
+        {
+            "reservation_id": "RES-001",
+            "service_id": "hair-skin",
+            "customer_id": "CUS-001",
+            "cat_id": "CAT-001",
+            "service_method": "Home Service",
+            "work_status": "Pending",
+            "notification_h1": true,
+            "total_bill": 55000,
+            "paymen_status": "Unpaid",
+            "before_after": {
+                "before": "https://example.com/reservations/RES-001/before.jpg",
+                "after": null
+            }
+        }
     ]
 }

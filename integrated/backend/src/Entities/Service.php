@@ -26,39 +26,74 @@ final class Service
 
     public static function fromArray(array $data): self
     {
+
+        $rawTierPrices = $data['tier_prices'] ?? $data['prices'] ??[];
+
+
         $tierPrices = [];
-        if (is_array($data['tier_prices'] ?? null)) {
-            foreach ($data['tier_prices'] as $tier => $price) {
-                $tierPrices[(string) $tier] = (int) $price;
-            }
-        } elseif (is_array($data['prices'] ?? null)) {
-            foreach ($data['prices'] as $tier => $price) {
+
+        if(is_array($rawTierPrices)){
+            foreach($rawTierPrices as $tier => $price){
                 $tierPrices[(string) $tier] = (int) $price;
             }
         }
 
-        $features = [];
-        if (is_array($data['features'] ?? null)) {
-            foreach ($data['features'] as $item) {
-                if (is_string($item)) {
-                    $features[] = $item;
-                } elseif (is_array($item) && isset($item['text'])) {
-                    $features[] = (string) $item['text'];
-                }
+        $rawFeatures = $data['features']?? [];
+
+       $features = [];
+
+       if(is_array($rawFeatures)){
+        foreach($rawFeatures as $item){
+            if(is_string($item)){
+                $features[]=$item;
+            } elseif(is_array($item)&& isset($item['text'])){
+                $features []= (string) $item['text'];
             }
         }
+       }
+
+
+        $isPopular = $data['is_popular'] ?? $data ['isPopular'] ??(($data['variant']??'') === 'popular');
+
+        $isActive = $data ['is_active']?? $data['isActive'] ?? true;
+
 
         return new self(
             trim((string) ($data['id'] ?? '')),
             trim((string) ($data['name'] ?? '')),
             trim((string) ($data['badge_label'] ?? ($data['badgeLabel'] ?? ''))),
             trim((string) ($data['description'] ?? '')),
-            (bool) ($data['is_popular'] ?? ($data['isPopular'] ?? (($data['variant'] ?? '') === 'popular'))),
-            (int) ($data['base_price'] ?? ($data['basePrice'] ?? ($data['price'] ?? 0))),
+             self::normalizeBoolean($isPopular),
+            (int) ($data['base_price'] ?? $data['basePrice'] ?? $data['price'] ?? 0),
             $tierPrices,
             $features,
-            (bool) ($data['is_active'] ?? ($data['isActive'] ?? true))
+            self::normalizeBoolean($isActive)
         );
+    }
+
+
+    public static function normalizeBoolean(mixed $value) : bool {
+        if(is_bool($value)){
+            return $value;
+        }
+
+        if(is_string($value)){
+            return match (strtolower(trim($value))){
+                'true', '1' =>true,
+                'false', '0' => false,
+                default => throw new \InvalidArgumentException('Invalid boolean value'),
+            };
+        }
+
+        if (is_int($value)){
+            return match ($value){
+                1=> true,
+                0 => false,
+                default => throw new \InvalidArgumentException('Invalud boolean value'),
+            };
+        }
+
+        throw new \InvalidArgumentException('Boolean value must be a boolean, string, or integer');
     }
 
     private function validate(): void
