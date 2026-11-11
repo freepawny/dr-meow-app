@@ -1,0 +1,135 @@
+{
+    "services": [
+        {
+            "id": "hair-skin",
+            "name": "Hair & Skin",
+            "badge_label": "Perawatan Rutin & Bulu",
+            "description": "Direkomendasikan untuk kulit kering, bulu rusak, rapuh, rontok, dan kasar. Menutrisi serta melembabkan secara optimal.",
+            "is_popular": false,
+            "base_price": 55000,
+            "tier_prices": {
+                "<2": 55000,
+                ">2": 60000,
+                ">5": 65000
+            },
+            "features": [
+                "Bebas pilih 4 varian sampo (Botanical, Shinny Black, Whitening, Sensitive Skin)",
+                "Bebas pilih 3 kategori aroma parfum (Segar, Manis, Powdery)",
+                "Termasuk potong kuku, bersihkan telinga, urai gimbal & trimming paw"
+            ],
+            "is_active": true
+        },
+        {
+            "id": "complete",
+            "name": "Komplit",
+            "badge_label": "Fokus Terapi Medis",
+            "description": "Penanganan tuntas masalah medis kulit: membantu mengurangi kutu, serta menyembuhkan scabies dan jamur dengan bahan aktif terukur.",
+            "is_popular": true,
+            "base_price": 55000,
+            "tier_prices": {
+                "<2": 55000,
+                ">2": 60000,
+                ">5": 65000
+            },
+            "features": [
+                "Sampo medis aktif Fipronil (kutu) / Mikonazol & Klorheksidin (jamur)",
+                "Terapi bilas Lime Sulfur untuk kasus jamur & scabies berat",
+                "Pemeriksaan fisik menyeluruh (suhu & BB) + Digital Health Report"
+            ],
+            "is_active": true
+        },
+        {
+            "id": "sensitive",
+            "name": "Sensitive Skin",
+            "badge_label": "Kulit Rentan/Alergi",
+            "description": "Aman untuk kulit alergi atau dermatitis. 0% Paraben & SLS/SLES, formula ringan non-iritatif dengan pH seimbang.",
+            "is_popular": false,
+            "base_price": 60000,
+            "tier_prices": {
+                "<2": 60000,
+                ">2": 65000,
+                ">5": 70000
+            },
+            "features": [
+                "Sampo Hypoallergenic diperkaya ekstrak Oatmeal, Susu, & Vit E",
+                "Menggunakan degreaser natural (mild) & minim pewangi buatan",
+                "Pengeringan low-stress dengan suhu hangat terkontrol"
+            ],
+            "is_active": true
+        }
+    ],
+    "customers": [
+        {
+            "customer_id": "CUS-001",
+            "name": "Nadia Putri",
+            "phone_number": "081234567890",
+            "schedule": "2026-11-08T10:00:00",
+            "address": "Jl. Soekarno Hatta No. 15, Malang",
+            "preference_notification": true
+        },
+        {
+            "customer_id": "CUS-9A4E47AF",
+            "name": "Prabowo",
+            "phone_number": "08129998889",
+            "schedule": "2026-11-08T08:00:00",
+            "address": "Isekai",
+            "preference_notification": true
+        }
+    ],
+    "cats": [
+        {
+            "cat_id": "CAT-001",
+            "customer_id": "CUS-001",
+            "name": "Mochi",
+            "weight": 1.8,
+            "breeds": "Persian",
+            "vital_temperature": 38.2,
+            "tempramen": "Friendly",
+            "medical_history": "Tidak memiliki riwayat penyakit",
+            "last_picture": "https://example.com/cats/mochi.jpg"
+        },
+        {
+            "cat_id": "CAT-14026150",
+            "customer_id": "CUS-9A4E47AF",
+            "name": "Asoe",
+            "weight": 5.5,
+            "breeds": "Lainnya",
+            "vital_temperature": null,
+            "tempramen": "Aktif",
+            "medical_history": "Tidak memiliki riwayat penyakit",
+            "last_picture": null
+        }
+    ],
+    "reservations": [
+        {
+            "reservation_id": "RES-001",
+            "service_id": "hair-skin",
+            "customer_id": "CUS-001",
+            "cat_id": "CAT-001",
+            "service_method": "Home Service",
+            "work_status": "Pending",
+            "notification_h1": true,
+            "total_bill": 55000,
+            "paymen_status": "Unpaid",
+            "before_after": {
+                "before": "https://example.com/reservations/RES-001/before.jpg",
+                "after": null
+            }
+        },
+        {
+            "reservation_id": "RES-0C0447C4",
+            "service_id": "hair-skin",
+            "customer_id": "CUS-9A4E47AF",
+            "cat_id": "CAT-14026150",
+            "service_method": "Antar-Jemput (Pick-up)",
+            "work_status": "Pending",
+            "notification_h1": true,
+            "total_bill": 65000,
+            "paymen_status": "Unpaid",
+            "before_after": {
+                "before": null,
+                "after": null
+            }
+        }
+    ]
+}
