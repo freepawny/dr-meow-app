@@ -1,13 +1,342 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nama-proyek</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR. MEOWW — Grooming Kucing Standar Medis Veteriner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/navbar-hero.css">
+    <link rel="stylesheet" href="css/pricing-delivery.css">
+    <link rel="stylesheet" href="css/showcase-branch.css">
+    <link rel="stylesheet" href="css/faq-footer.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar-nav" aria-label="Main Navigation">
+            <a href="#" class="brand-logo-link" aria-label="Beranda DR. MEOWW">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/e8963345c9927333c14db8de1d2560e1ba26788e?width=324" alt="Logo DR. MEOWW" width="162" height="53" class="brand-logo-img">
+            </a>
+
+            <div class="nav-tabs-desktop">
+                <div class="tab-container-default" role="tablist" aria-label="Navigasi Utama">
+                    <a href="#layanan" class="tab-pill active" role="tab" aria-selected="true">Layanan</a>
+                    <a href="#harga" class="tab-pill" role="tab" aria-selected="false">Harga</a>
+                    <a href="#faq" class="tab-pill" role="tab" aria-selected="false">FAQ</a>
+                </div>
+            </div>
+
+            <div class="nav-cta-desktop">
+                <a href="#booking" class="btn btn-medium btn-filled">Reservasi Sekarang</a>
+            </div>
+
+            <details class="mobile-nav-details">
+                <summary class="mobile-menu-btn" aria-label="Buka menu navigasi">☰</summary>
+                <div class="mobile-dropdown-static">
+                    <a href="#layanan" class="tab-pill active">Layanan</a>
+                    <a href="#harga" class="tab-pill">Harga</a>
+                    <a href="#faq" class="tab-pill">FAQ</a>
+                    <a href="#booking" class="btn btn-medium btn-filled">Reservasi Sekarang</a>
+                </div>
+            </details>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="main-content">
+            <!-- HERO SECTION -->
+            <section class="hero-section" aria-label="Hero Section">
+                <div class="hero-inner">
+                    <div class="section-header center">
+                        <h1 class="section-headline">Gak Sekadar Bersih!
+Grooming Kucing Standar <span class="text-accent">Medis Veteriner</span></h1>
+                        <p class="section-subheadline">Rawat kucing kesayangan lebih praktis dan higienis dengan formula hypoallergenic bebas SLS/SLES yang aman untuk kulit sensitif. Tersedia layanan jemput ke rumah atau kunjungi langsung cabang Sukun dan Pakis!</p>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#harga" class="btn btn-giant btn-filled">Lihat Paket &amp; Booking →</a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-giant btn-outline">Konsultasi via WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURES SECTION -->
+            <section class="features-section" id="layanan" aria-label="Features Section">
+                <div class="section-header center">
+                    <h2 class="section-headline">Kenapa DR. MEOWW Berbeda?</h2>
+                    <p class="section-subheadline">Kami menerapkan protokol kesehatan berlapis untuk memastikan anabul pulang dalam keadaan cantik, sehat, dan bebas stres.</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <h3 class="feature-title">Skrining Suhu &amp; Fisik Wajib</h3>
+                        <p class="feature-desc">Setiap kucing wajib lolos cek suhu vital (37,8°C – 39,2°C). Jika terindikasi sakit, perawatan ditunda demi mencegah penularan silang.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3 class="feature-title">Ditangani Paramedis Veteriner</h3>
+                        <p class="feature-desc">Bukan sekadar groomer biasa. Tim kami paham anatomi, sabar menghadapi kucing penakut, dan menerapkan teknik low-stress handling.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3 class="feature-title">Laporan Kesehatan Digital</h3>
+                        <p class="feature-desc">Setelah pengerjaan selesai, Anda menerima rekam medis digital (suhu, temuan fisik/jamur) beserta foto Before-After langsung ke WhatsApp.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- PRICING SECTION -->
+            <section class="pricing-section" id="harga" aria-label="Pricing Section">
+                <div class="section-header center">
+                    <h2 class="section-headline">Solusi Perawatan Tepat
+untuk Setiap Kondisi</h2>
+                    <p class="section-subheadline">Tidak ada biaya tersembunyi. Tarif dihitung secara adil berdasarkan rentang berat badan atau kebutuhan kapasitas kucingmu.</p>
+                </div>
+
+                <div class="tab-container-capsule" role="tablist" aria-label="Kategori Layanan">
+                    <span class="tab-pill active" role="tab" aria-selected="true">Paket Grooming</span>
+                    <span class="tab-pill" role="tab" aria-selected="false">Penitipan Kucing</span>
+                </div>
+
+                <div class="size-selectors">
+                    <div class="size-card-btn selected">
+                        <span class="size-card-title">Kecil (&lt; 2 kg)</span>
+                        <span class="size-card-desc">Kucing anakan / ras kecil</span>
+                    </div>
+                    <div class="size-card-btn">
+                        <span class="size-card-title">Sedang (&gt; 2 kg)</span>
+                        <span class="size-card-desc">Kucing dewasa standar</span>
+                    </div>
+                    <div class="size-card-btn">
+                        <span class="size-card-title">Besar (&gt; 5 kg)</span>
+                        <span class="size-card-desc">Kucing ras besar (Maine Coon, dll)</span>
+                    </div>
+                </div>
+
+                <div class="pricing-cards-grid">
+                    <article class="pricing-card">
+                        <div class="pricing-card-inner">
+                            <div>
+                                <div class="pricing-card-top-row">
+                                    <span class="badge badge-small badge-outline-default">Perawatan Rutin &amp; Bulu</span>
+                                    <span class="pricing-sub-category">Kecil (&lt; 2 kg)</span>
+                                </div>
+                                <h3 class="pricing-card-name">Grooming Hair &amp; Skin</h3>
+                                <div class="pricing-price-row">
+                                    <span class="pricing-price-val">Rp 55.000</span>
+                                    <span class="pricing-price-unit">/ ekor</span>
+                                </div>
+                                <p class="pricing-card-desc">Direkomendasikan untuk kulit kering, bulu rusak, rapuh, rontok, dan kasar. Menutrisi serta melembabkan secara optimal.</p>
+                            </div>
+                            <div class="pricing-divider-line"></div>
+                            <ul class="pricing-features-list">
+                                <li class="pricing-feature-item">Bebas pilih 4 varian sampo (Botanical, Shinny Black, Whitening, Sensitive Skin)</li>
+                                <li class="pricing-feature-item">Bebas pilih 3 kategori aroma parfum (Segar, Manis, Powdery)</li>
+                                <li class="pricing-feature-item">Termasuk potong kuku, bersihkan telinga, urai gimbal &amp; trimming paw</li>
+                            </ul>
+                            <div class="pricing-action">
+                                <a href="#booking" class="btn btn-large btn-filled">Pilih Paket: Hair &amp; Skin</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pricing-card popular">
+                        <div class="popular-badge-wrapper"><span class="popular-badge">Paling Populer</span></div>
+                        <div class="pricing-card-inner">
+                            <div>
+                                <div class="pricing-card-top-row">
+                                    <span class="badge badge-small badge-outline-default">Fokus Terapi Medis</span>
+                                    <span class="pricing-sub-category">Kecil (&lt; 2 kg)</span>
+                                </div>
+                                <h3 class="pricing-card-name">Grooming Komplit</h3>
+                                <div class="pricing-price-row">
+                                    <span class="pricing-price-val">Rp 55.000</span>
+                                    <span class="pricing-price-unit">/ ekor</span>
+                                </div>
+                                <p class="pricing-card-desc">Penanganan tuntas masalah medis kulit: membantu mengurangi kutu, serta menyembuhkan scabies dan jamur dengan bahan aktif terukur.</p>
+                            </div>
+                            <div class="pricing-divider-line"></div>
+                            <ul class="pricing-features-list">
+                                <li class="pricing-feature-item">Sampo medis aktif Fipronil (kutu) / Mikonazol &amp; Klorheksidin (jamur)</li>
+                                <li class="pricing-feature-item">Terapi bilas Lime Sulfur untuk kasus jamur &amp; scabies berat</li>
+                                <li class="pricing-feature-item">Pemeriksaan fisik menyeluruh (suhu &amp; BB) + Digital Health Report</li>
+                            </ul>
+                            <div class="pricing-action">
+                                <a href="#booking" class="btn btn-large btn-filled">Pilih Paket: Komplit</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pricing-card">
+                        <div class="pricing-card-inner">
+                            <div>
+                                <div class="pricing-card-top-row">
+                                    <span class="badge badge-small badge-outline-default">Kulit Rentan/Alergi</span>
+                                    <span class="pricing-sub-category">Kecil (&lt; 2 kg)</span>
+                                </div>
+                                <h3 class="pricing-card-name">Grooming Sensitive Skin</h3>
+                                <div class="pricing-price-row">
+                                    <span class="pricing-price-val">Rp 60.000</span>
+                                    <span class="pricing-price-unit">/ ekor</span>
+                                </div>
+                                <p class="pricing-card-desc">Aman untuk kulit alergi atau dermatitis. 0% Paraben &amp; SLS/SLES, formula ringan non-iritatif dengan pH seimbang.</p>
+                            </div>
+                            <div class="pricing-divider-line"></div>
+                            <ul class="pricing-features-list">
+                                <li class="pricing-feature-item">Sampo Hypoallergenic diperkaya ekstrak Oatmeal, Susu, &amp; Vit E</li>
+                                <li class="pricing-feature-item">Menggunakan degreaser natural (mild) &amp; minim pewangi buatan</li>
+                                <li class="pricing-feature-item">Pengeringan low-stress dengan suhu hangat terkontrol</li>
+                            </ul>
+                            <div class="pricing-action">
+                                <a href="#booking" class="btn btn-large btn-filled">Pilih Paket: Sensitive Skin</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- DELIVERY METHODS SECTION -->
+            <section class="delivery-section" aria-label="Delivery Methods Section">
+                <div class="section-header center">
+                    <h2 class="section-headline">Empat Cara Untuk
+Membuat Kucing Menawan</h2>
+                    <p class="section-subheadline">Pilih 1 dari 4 cara pemenuhan layanan yang paling pas dengan jadwal sibuk Anda.</p>
+                </div>
+                <div class="delivery-grid">
+                    <article class="delivery-card">
+                        <div class="delivery-image-box"><img src="https://api.builder.io/api/v1/image/assets/TEMP/defb56e6e7f9bdfb282014073fe29a0b487ffb1b?width=534" alt="Antar-Jemput"></div>
+                        <div class="delivery-content"><h3 class="delivery-title">Antar-Jemput</h3><p class="delivery-desc">Biar kurir terlatih kami yang jemput ke rumah.</p></div>
+                    </article>
+                    <article class="delivery-card">
+                        <div class="delivery-image-box"><img src="https://api.builder.io/api/v1/image/assets/TEMP/defb56e6e7f9bdfb282014073fe29a0b487ffb1b?width=534" alt="Home Service"></div>
+                        <div class="delivery-content"><h3 class="delivery-title">Home Service</h3><p class="delivery-desc">Groomer kami datang, kucing tetap tenang di rumah Anda.</p></div>
+                    </article>
+                    <article class="delivery-card">
+                        <div class="delivery-image-box"><img src="https://api.builder.io/api/v1/image/assets/TEMP/defb56e6e7f9bdfb282014073fe29a0b487ffb1b?width=534" alt="Drop-off"></div>
+                        <div class="delivery-content"><h3 class="delivery-title">Drop-off</h3><p class="delivery-desc">Tinggal kucingnya sebelum kerja, ambil saat sudah wangi.</p></div>
+                    </article>
+                    <article class="delivery-card">
+                        <div class="delivery-image-box"><img src="https://api.builder.io/api/v1/image/assets/TEMP/defb56e6e7f9bdfb282014073fe29a0b487ffb1b?width=534" alt="Ditunggu"></div>
+                        <div class="delivery-content"><h3 class="delivery-title">Ditunggu</h3><p class="delivery-desc">Bersantai di ruang tunggu indoor/outdoor klinik kami.</p></div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- BEFORE & AFTER SECTION -->
+            <section class="before-after-section" aria-label="Before After Section">
+                <div class="section-header left">
+                    <h2 class="section-headline">Lihat Bagaimana Perubahan Kucing-Kucing Ini</h2>
+                    <p class="section-subheadline">Jangan hanya percaya kata-kata kami. Lihat transformasi dan cerita bahagia dari para Paw Parents di Malang.</p>
+                </div>
+                <div class="showcase-wrapper">
+                    <div class="stacked-cards-container">
+                        <article class="stacked-card card-before">
+                            <div class="stacked-image-box"><img src="https://api.builder.io/api/v1/image/assets/TEMP/c6fcd5953097f1c1ef2cf47075ad67c4ef2bc472?width=658" alt="Kucing sebelum perawatan"></div>
+                            <div class="stacked-content"><h3 class="stacked-card-title">BEFORE</h3></div>
+                        </article>
+                        <article class="stacked-card card-after">
+                            <div class="stacked-image-box"><img src="https://api.builder.io/api/v1/image/assets/TEMP/023ba9531a56b6ce60863a880f0dee8b632f3390?width=658" alt="Kucing setelah perawatan"></div>
+                            <div class="stacked-content"><h3 class="stacked-card-title">AFTER</h3></div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BRANCH SECTION -->
+            <section class="branch-section" aria-label="Branch Section">
+                <div class="section-header center">
+                    <h2 class="section-headline">Kunjungi Cabang DR. MEOWW Terdekat</h2>
+                    <p class="section-subheadline">Buka setiap hari (kecuali hari Jumat) pukul 08.00 – 17.00 WIB.</p>
+                </div>
+                <div class="branch-cards-grid">
+                    <article class="branch-card">
+                        <div class="branch-card-body">
+                            <div class="branch-card-header">
+                                <span class="branch-tag-badge">Cabang Malang Selatan / Barat</span>
+                                <span class="branch-hours-text">08.00 – 17.00 WIB</span>
+                            </div>
+                            <h3 class="branch-title">DR. MEOWW — <span class="highlight">Cabang Sukun</span></h3>
+                            <p class="branch-address-row"><strong>Perumahan La Vella 29,</strong> Kec. Sukun, Kota Malang</p>
+                            <ul class="branch-facilities-list">
+                                <li>Ruang tunggu Indoor/Outdoor nyaman</li>
+                                <li>Instalasi Grooming Medis &amp; Kandang Penitipan Steril</li>
+                            </ul>
+                        </div>
+                        <a href="https://maps.google.com/?q=DR.+MEOWW+Cabang+Sukun" target="_blank" rel="noopener noreferrer" class="btn btn-large btn-outline branch-card-btn">Buka di Google Maps</a>
+                    </article>
+
+                    <article class="branch-card">
+                        <div class="branch-card-body">
+                            <div class="branch-card-header">
+                                <span class="branch-tag-badge">Cabang Malang Timur</span>
+                                <span class="branch-hours-text">08.00 – 17.00 WIB</span>
+                            </div>
+                            <h3 class="branch-title">DR. MEOWW — <span class="highlight">Cabang Pakis</span></h3>
+                            <p class="branch-address-row"><strong>Perumahan Kota Mandala A10,</strong> Pakis, Malang</p>
+                            <ul class="branch-facilities-list">
+                                <li>Ruang tunggu Indoor/Outdoor nyaman</li>
+                                <li>Layanan Antar-Jemput Kurir &amp; Grooming Medis Lengkap</li>
+                            </ul>
+                        </div>
+                        <a href="https://maps.google.com/?q=DR.+MEOWW+Cabang+Pakis" target="_blank" rel="noopener noreferrer" class="btn btn-large btn-outline branch-card-btn">Buka di Google Maps</a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- FAQ SECTION -->
+            <section class="faq-section" id="faq" aria-label="FAQ Section">
+                <div class="section-header center">
+                    <h2 class="section-headline">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                    <p class="section-subheadline">Informasi lengkap seputar standar perawatan medis dan fasilitas DR. MEOWW.</p>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item" open>
+                        <summary class="faq-trigger">
+                            <span class="faq-trigger-left"><span class="faq-num">1</span><span class="faq-question">Apakah kucing saya harus sudah divaksin sebelum grooming?</span></span>
+                            <span class="faq-chevron" aria-hidden="true">▾</span>
+                        </summary>
+                        <div class="faq-content"><p class="faq-answer">Kami menyarankan kucing sudah divaksinasi. Namun jika belum, paramedis veteriner kami akan melakukan skrining suhu tubuh vital (37,8°C – 39,2°C) serta cek fisik terlebih dahulu agar perawatan tetap aman.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-trigger">
+                            <span class="faq-trigger-left"><span class="faq-num">2</span><span class="faq-question">Berapa lama rata-rata durasi pengerjaan grooming per ekor?</span></span>
+                            <span class="faq-chevron" aria-hidden="true">▾</span>
+                        </summary>
+                        <div class="faq-content"><p class="faq-answer">Rata-rata 60 hingga 90 menit per ekor mencakup skrining fisik awal, potong kuku, pembersihan telinga, mandi terapeutik, pengeringan hangat terkontrol, serta trimming paw.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-trigger">
+                            <span class="faq-trigger-left"><span class="faq-num">3</span><span class="faq-question">Bagaimana jika kucing saya penakut atau mudah stres saat dimandikan?</span></span>
+                            <span class="faq-chevron" aria-hidden="true">▾</span>
+                        </summary>
+                        <div class="faq-content"><p class="faq-answer">Seluruh proses ditangani paramedis veteriner terlatih dengan teknik low-stress handling tanpa kekerasan dan tanpa sedasi/bius.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-trigger">
+                            <span class="faq-trigger-left"><span class="faq-num">4</span><span class="faq-question">Bagaimana cara kerja layanan Antar-Jemput (Pick-up)?</span></span>
+                            <span class="faq-chevron" aria-hidden="true">▾</span>
+                        </summary>
+                        <div class="faq-content"><p class="faq-answer">Kurir terlatih kami menjemput anabul menggunakan pet carrier steril ber-AC, lalu mengantarnya kembali setelah perawatan selesai dan Digital Health Report terbit.</p></div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- BOTTOM CTA SECTION -->
+            <section class="cta-section" id="booking" aria-label="Call to Action Section">
+                <div class="cta-card">
+                    <span class="badge badge-medium badge-filled-warning">Layanan Grooming Standar Medis Terpercaya di Malang</span>
+                    <h2 class="cta-headline">Siap Bikin Kucing Anda Lebih Bersih, Sehat, dan Menggemaskan?</h2>
+                    <p class="cta-subheadline">Reservasi slot grooming atau penitipan anabul kesayangan sekarang dalam hitungan menit.</p>
+                    <div class="cta-actions">
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-giant btn-filled">Reservasi Slot Sekarang →</a>
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-giant btn-outline">Konsultasi via WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>© 2026 DR. MEOWW. Hak cipta dilindungi undang-undang.</p>
+        </footer>
+    </div>
+</body>
 </html>

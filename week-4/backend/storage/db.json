@@ -74,6 +74,22 @@
             "schedule": "2026-11-08T08:00:00",
             "address": "Isekai",
             "preference_notification": true
+        },
+        {
+            "customer_id": "CUS-3023C470",
+            "name": "PRABOWO",
+            "phone_number": "12341313141413",
+            "schedule": "2026-11-07T10:00:00",
+            "address": "SAN ANDREAS",
+            "preference_notification": true
+        },
+        {
+            "customer_id": "CUS-F695A9B3",
+            "name": "AGUS",
+            "phone_number": "12345678999999",
+            "schedule": "2026-11-07T10:00:00",
+            "address": "LOS SANTOS SAN ANDREAS",
+            "preference_notification": true
         }
     ],
     "cats": [
@@ -96,6 +112,28 @@
             "breeds": "Lainnya",
             "vital_temperature": null,
             "tempramen": "Aktif",
+            "medical_history": "Tidak memiliki riwayat penyakit",
+            "last_picture": null
+        },
+        {
+            "cat_id": "CAT-158EDD0B",
+            "customer_id": "CUS-3023C470",
+            "name": "TEDDY",
+            "weight": 1.5,
+            "breeds": "Domestik",
+            "vital_temperature": null,
+            "tempramen": "Friendly",
+            "medical_history": "Tidak memiliki riwayat penyakit",
+            "last_picture": null
+        },
+        {
+            "cat_id": "CAT-982B79E5",
+            "customer_id": "CUS-F695A9B3",
+            "name": "anjing",
+            "weight": 1.5,
+            "breeds": "Domestik",
+            "vital_temperature": null,
+            "tempramen": "Friendly",
             "medical_history": "Tidak memiliki riwayat penyakit",
             "last_picture": null
         }
@@ -125,6 +163,36 @@
             "work_status": "Pending",
             "notification_h1": true,
             "total_bill": 65000,
+            "paymen_status": "Unpaid",
+            "before_after": {
+                "before": null,
+                "after": null
+            }
+        },
+        {
+            "reservation_id": "RES-3D13AF00",
+            "service_id": "complete",
+            "customer_id": "CUS-3023C470",
+            "cat_id": "CAT-158EDD0B",
+            "service_method": "Antar-Jemput (Pick-up)",
+            "work_status": "Pending",
+            "notification_h1": true,
+            "total_bill": 55000,
+            "paymen_status": "Unpaid",
+            "before_after": {
+                "before": null,
+                "after": null
+            }
+        },
+        {
+            "reservation_id": "RES-0B3E286E",
+            "service_id": "complete",
+            "customer_id": "CUS-F695A9B3",
+            "cat_id": "CAT-982B79E5",
+            "service_method": "Antar-Jemput (Pick-up)",
+            "work_status": "Pending",
+            "notification_h1": true,
+            "total_bill": 55000,
             "paymen_status": "Unpaid",
             "before_after": {
                 "before": null,
