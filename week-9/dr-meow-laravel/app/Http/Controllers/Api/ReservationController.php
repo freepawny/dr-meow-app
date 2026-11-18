@@ -29,7 +29,7 @@ class ReservationController extends Controller
         $data = $request->all();
         if (empty($data['reservation_id'])) {
             $data['reservation_id'] = 'RES-' . strtoupper(Str::random(8));
-        }Pelanggan mengisi form booking reservasi di website lalu menekan tombol "Konfirmasi Reservas
+        }
         $reservation = Reservation::create($data);
         return $this->success($reservation, 'Reservation created successfully', 201);
     }
