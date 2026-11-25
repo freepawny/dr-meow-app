@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Service extends Model
 {
     public $incrementing = false;
+
     protected $keyType = 'string';
 
     protected $fillable = [
@@ -20,6 +21,8 @@ class Service extends Model
         'tier_prices',
         'features',
         'is_active',
+        'category',
+        'duration_minutes',
     ];
 
     protected $casts = [

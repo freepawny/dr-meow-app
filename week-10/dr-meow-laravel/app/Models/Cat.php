@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Cat extends Model
 {
     protected $primaryKey = 'cat_id';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
 
     protected $fillable = [
@@ -18,6 +20,7 @@ class Cat extends Model
         'name',
         'weight',
         'breeds',
+        'age_years',
         'vital_temperature',
         'tempramen',
         'medical_history',

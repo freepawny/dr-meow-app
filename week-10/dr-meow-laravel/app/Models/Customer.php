@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Customer extends Model
 {
     protected $primaryKey = 'customer_id';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
 
     protected $fillable = [
         'customer_id',
         'name',
         'phone_number',
+        'email',
         'schedule',
         'address',
         'preference_notification',
