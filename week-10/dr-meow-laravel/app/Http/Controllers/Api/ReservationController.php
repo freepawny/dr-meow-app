@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -24,23 +25,24 @@ class ReservationController extends Controller
         return $this->success($reservation, 'Reservation retrieved successfully');
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(ReservationRequest $request): JsonResponse
     {
-        $data = $request->all();
-        if (empty($data['reservation_id'])) {
-            $data['reservation_id'] = 'RES-' . strtoupper(Str::random(8));
+        $validated = $request->validated();
+        if (empty($validated['reservation_id'])) {
+            $validated['reservation_id'] = 'RES-' . strtoupper(Str::random(8));
         }
-        $reservation = Reservation::create($data);
+        $reservation = Reservation::create($validated);
         return $this->success($reservation, 'Reservation created successfully', 201);
     }
 
-    public function update(Request $request, string $id): JsonResponse
+    public function update(ReservationRequest $request, string $id): JsonResponse
     {
         $reservation = Reservation::find($id);
         if (!$reservation) {
             return $this->error('Reservation not found', 404);
         }
-        $reservation->update($request->all());
+        $validated = $request->validated();
+        $reservation->update($validated);
         return $this->success($reservation, 'Reservation updated successfully');
     }
 

@@ -1,0 +1,349 @@
+{
+  "info": {
+    "_postman_id": "f9dfc08c-9977-4e52-93f8-08cda3f43b17",
+    "name": "Dr Meow Reservations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58521093"
+  },
+  "item": [
+    {
+      "name": "happy-path",
+      "item": [
+        {
+          "name": "List Reservations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Reservation Valid",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"reservation_id\": \"RES-HAPPY1\"\r\n  \"service_id\": \"complete\",\r\n  \"customer_id\": \"CUS-001\",\r\n  \"cat_id\": \"CAT-001\",\r\n  \"service_method\": \"Home Service\",\r\n  \"work_status\": \"Pending\",\r\n  \"notification_h1\": true,\r\n  \"total_bill\": 150000,\r\n  \"paymen_status\": \"Unpaid\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detail Reservation Valid",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-HAPPY1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-HAPPY1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Reservation Valid",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"work_status\": \"In Progress\",\r\n  \"paymen_status\": \"Paid\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-HAPPY1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-HAPPY1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Prohibited Field",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customer_id\": \"CUS-001\",\r\n  \"work_status\": \"Completed\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-HAPPY1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-HAPPY1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reservation Valid",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-HAPPY1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-HAPPY1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "unhappy-path",
+      "item": [
+        {
+          "name": "Empty Payload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Foreign Key",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"service_id\": \"tidak-ada\",\r\n  \"customer_id\": \"CUS-9999\",\r\n  \"cat_id\": \"CAT-9999\",\r\n  \"service_method\": \"Home Service\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-UNHAPPY100",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-UNHAPPY100"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Not Found",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"work_status\": \"In Progress\",\r\n  \"paymen_status\": \"Paid\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-UNHAPPY100",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-UNHAPPY100"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Not Found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/reservations/RES-UNHAPPY100",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "RES-UNHAPPY100"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
